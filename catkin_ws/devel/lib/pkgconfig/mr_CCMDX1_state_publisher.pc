@@ -1,0 +1,8 @@
+prefix=/home/cristiano/ROS/catkin_ws/devel
+
+Name: mr_CCMDX1_state_publisher
+Description: Description of mr_CCMDX1_state_publisher
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

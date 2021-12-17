@@ -1,0 +1,5 @@
+<!-- Here I am adding the robot_state_publisher node form the tutorial-->
+
+  <param name="robot_description" command="cat $((find mobile_robot_CCMDX1)/urdf/mr_CCMDX1.urdf" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  <node name="state_publisher" pkg="mobile_robot_CCMDX1" type="state_publisher" />

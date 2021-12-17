@@ -1,0 +1,36 @@
+<launch>
+  <arg name="model" default="$(find mobile_robot_CCMDX1)/urdf/mr_CCMDX1.urdf"/>
+  <arg name="rvizconfig" default="$(find mobile_robot_CCMDX1)/rviz/urdf.rviz" />
+
+  <include file="$(find mobile_robot_CCMDX1)/launch/ccmdx1_gazebo.launch">
+    <arg name="model" value="$(arg model)" />
+  </include>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" />
+
+
+  <!--rosparam file="$(find mobile_robot_CCMDX1)/config/pid_param.yaml" command="load" /-->
+
+
+
+  <rosparam command="load"
+            file="$(find mobile_robot_CCMDX1)/config/joints.yaml"
+            ns="ccmdx1_joint_state_controller" />
+  <rosparam command="load"
+            file="$(find mobile_robot_CCMDX1)/config/head.yaml"
+            ns="ccmdx1_head_controller" />
+  <rosparam command="load"
+            file="$(find mobile_robot_CCMDX1)/config/diffdrive.yaml"
+            ns="ccmdx1_diff_drive_controller" />
+
+  <node name="ccmdx1_controller_spawner" pkg="controller_manager" type="spawner"
+    args="ccmdx1_joint_state_controller
+          ccmdx1_head_controller
+          ccmdx1_diff_drive_controller
+          --shutdown-timeout 3"/>
+
+  <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
+    <param name="default_topic" value="/ccmdx1_diff_drive_controller/cmd_vel"/>
+  </node>
+
+</launch>

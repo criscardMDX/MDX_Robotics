@@ -1,0 +1,2 @@
+MYROBOT_description:MYROBOT_gazebo:beginner_tutorials:mobile_robot_CCMDX1:mr_CCMDX1_state_publisher:urdf_sim_tutorial:urdf_tutorial
+-DCATKIN_DEVEL_PREFIX=/home/cristiano/ROS/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/cristiano/ROS/catkin_ws/install -G Unix Makefiles
