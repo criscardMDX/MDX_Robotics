@@ -1,6 +1,7 @@
 <launch>
   <!-- these are the arguments you can pass this launch file, for example paused:=true -->
   <arg name="paused" default="false"/>
+  <arg name="use_gazebo" default="false" />
   <arg name="use_sim_time" default="true"/>
   <arg name="gui" default="true"/>
   <arg name="headless" default="false"/>
@@ -43,9 +44,51 @@
   </node>
 
   <node name="slam_gmapping" pkg="gmapping" type="slam_gmapping">
-    <remap from="/scan" to="/r2d2_diff_drive_controller/laser/scan"/>
-    <param name="hokuyo_link" value="base_footprint"/>
+    <remap from="/scan" to="/ccmdx1/laser/scan"/>
+    <param name="hokuyo_link" value="base_frame"/>
+    <param name="delta" value="0.1" />
+
+   <rosparam>
+
+      odom_frame: odom
+      base_frame: base_link
+      map_frame: map
+      map_update_interval: 0.5 # Publish new map
+
+      maxUrange: 6 # Should be just less than sensor range
+      maxRange: 12 # Should be just greater than sensor range
+      particles: 150 # Increased from 80
+
+      # Update frequencies
+      linearUpdate: 0.3
+      angularUpdate: 0.5
+      temporalUpdate: 2
+      resampleThreshold: 0.5
+
+      # Initial Map Size
+      xmin: -100.0
+      ymin: -100.0
+      xmax: 100.0
+      ymax: 100.0
+      delta: 0.05 # 0.05
+
+      # All default
+      sigma: 0.05
+      kernelSize: 1
+      lstep: 0.05
+      astep: 0.05
+      iterations: 20 # 5
+      lsigma: 0.075
+      ogain: 3.0
+      lskip: 0
+      llsamplerange: 0.01
+      llsamplestep: 0.01
+      lasamplerange: 0.005
+      lasamplestep: 0.005
+     </rosparam>
+
   </node>
 
+  <node unless="$(arg use_gazebo)" pkg="tf" type="static_transform_publisher" name="laser_broadcaster" args="0 0 0.36 1.57 0 0 base_link laser 100" />
 
 </launch>

@@ -115,6 +115,17 @@
       <pose frame="vrc_driving_terrain_link">-14.5837 1.06101 1 0 -0 0</pose> <!--Modified-->
       <static>1</static>
       <link name='one::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -133,6 +144,17 @@
       </link>
       <static>1</static>
       <link name='two::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -151,6 +173,17 @@
       </link>
       <static>1</static>
       <link name='three::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -169,6 +202,17 @@
       </link>
       <static>1</static>
       <link name='four::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -187,6 +231,17 @@
       </link>
       <static>1</static>
       <link name='five::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -205,6 +260,17 @@
       </link>
       <static>1</static>
       <link name='six::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -223,6 +289,17 @@
       </link>
       <static>1</static>
       <link name='seven::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -241,6 +318,17 @@
       </link>
       <static>1</static>
       <link name='eight::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -259,6 +347,17 @@
       </link>
       <static>1</static>
       <link name='nine::link'>
+      <inertial>
+        <mass>5</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -277,6 +376,17 @@
       </link>
       <static>1</static>
       <link name='ten::link'>
+      <inertial>
+        <mass>5</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -299,6 +409,17 @@
       <static>1</static>
       <pose frame="vrc_driving_terrain_link">-6.74865 -1.22415 0.80 0 -0 0</pose> <!--Modified-->
       <link name='one::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -317,6 +438,17 @@
       </link>
       <static>1</static>
       <link name='two::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -335,6 +467,17 @@
       </link>
       <static>1</static>
       <link name='three::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -353,6 +496,17 @@
       </link>
       <static>1</static>
       <link name='four::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -371,6 +525,17 @@
       </link>
       <static>1</static>
       <link name='five::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -389,6 +554,17 @@
       </link>
       <static>1</static>
       <link name='six::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -407,6 +583,17 @@
       </link>
       <static>1</static>
       <link name='seven::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -425,6 +612,17 @@
       </link>
       <static>1</static>
       <link name='eight::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -443,6 +641,17 @@
       </link>
       <static>1</static>
       <link name='nine::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -461,6 +670,17 @@
       </link>
       <static>1</static>
       <link name='ten::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -483,6 +703,17 @@
       <static>1</static>
       <pose frame="vrc_driving_terrain_link">-0.030907 -15.4277 2.5 0 -0 0</pose>  <!--Modified-->
       <link name='one::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -501,6 +732,17 @@
       </link>
       <static>1</static>
       <link name='two::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -519,6 +761,17 @@
       </link>
       <static>1</static>
       <link name='three::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -537,6 +790,17 @@
       </link>
       <static>1</static>
       <link name='four::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -555,6 +819,17 @@
       </link>
       <static>1</static>
       <link name='five::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -573,6 +848,17 @@
       </link>
       <static>1</static>
       <link name='six::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -591,6 +877,17 @@
       </link>
       <static>1</static>
       <link name='seven::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -609,6 +906,17 @@
       </link>
       <static>1</static>
       <link name='eight::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -627,6 +935,17 @@
       </link>
       <static>1</static>
       <link name='nine::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -645,6 +964,17 @@
       </link>
       <static>1</static>
       <link name='ten::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -667,6 +997,17 @@
       <static>1</static>
       <pose frame="vrc_driving_terrain_link">-4.58796 -8.45133 1.7 0 0 -0.7404</pose> <!--Modified-->
       <link name='one::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -685,6 +1026,17 @@
       </link>
       <static>1</static>
       <link name='two::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -703,6 +1055,17 @@
       </link>
       <static>1</static>
       <link name='three::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -721,6 +1084,17 @@
       </link>
       <static>1</static>
       <link name='four::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -739,6 +1113,17 @@
       </link>
       <static>1</static>
       <link name='five::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -757,6 +1142,17 @@
       </link>
       <static>1</static>
       <link name='six::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -775,6 +1171,17 @@
       </link>
       <static>1</static>
       <link name='seven::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -793,6 +1200,17 @@
       </link>
       <static>1</static>
       <link name='eight::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -811,6 +1229,17 @@
       </link>
       <static>1</static>
       <link name='nine::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -829,6 +1258,17 @@
       </link>
       <static>1</static>
       <link name='ten::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -852,6 +1292,17 @@
       <static>1</static>
       <link name='one::link'>
        <pose frame=''>0 0 1.4 0 0 -1.5707</pose> <!--this one to further adjust the height and positioning angle-->
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -869,6 +1320,17 @@
       </link>
       <static>1</static>
       <link name='two::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -887,6 +1349,17 @@
       </link>
       <static>1</static>
       <link name='three::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -905,6 +1378,17 @@
       </link>
       <static>1</static>
       <link name='four::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -923,6 +1407,17 @@
       </link>
       <static>1</static>
       <link name='five::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -941,6 +1436,17 @@
       </link>
       <static>1</static>
       <link name='six::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -959,6 +1465,17 @@
       </link>
       <static>1</static>
       <link name='seven::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -977,6 +1494,17 @@
       </link>
       <static>1</static>
       <link name='eight::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -995,6 +1523,17 @@
       </link>
       <static>1</static>
       <link name='nine::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -1013,6 +1552,17 @@
       </link>
       <static>1</static>
       <link name='ten::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -1036,6 +1586,17 @@
       <pose frame="vrc_driving_terrain_link">-18.0928 15.2163 1.25 0 -0 0</pose>
       <static>1</static>
       <link name='one::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -1054,6 +1615,17 @@
       </link>
       <static>1</static>
       <link name='two::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -1072,6 +1644,17 @@
       </link>
       <static>1</static>
       <link name='three::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -1090,6 +1673,17 @@
       </link>
       <static>1</static>
       <link name='four::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -1108,6 +1702,17 @@
       </link>
       <static>1</static>
       <link name='five::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -1126,6 +1731,17 @@
       </link>
       <static>1</static>
       <link name='six::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -1144,6 +1760,17 @@
       </link>
       <static>1</static>
       <link name='seven::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -1162,6 +1789,17 @@
       </link>
       <static>1</static>
       <link name='eight::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -1180,6 +1818,17 @@
       </link>
       <static>1</static>
       <link name='nine::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -1198,6 +1847,17 @@
       </link>
       <static>1</static>
       <link name='ten::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -1215,10 +1875,20 @@
         <pose frame=''>11.0288 -6.44203 0.3 0 -0 0</pose>  <!--Modified-->
       </link>
     </model>
-
     <model name='drc_practice_blue_cylinder_01'>  <!-- south west quadrant, south end of the 45 degree jersey barrier reviewed-->
-      <static>1</static>
+      <static>True</static>
       <link name='drc_practice_blue_cylinder_01_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
       <pose frame="vrc_driving_terrain_link">-11.5418 14.2916 2.36 0 -0 0</pose>
         <visual name='visual'>
           <geometry>
@@ -1236,12 +1906,22 @@
         </collision>
       </link>
     </model>
-
     <model name='drc_practice_organge_jersey_barrier_10'> <!-- south wall, south west quadrant, 1st left from mid point south border reviewed-->
       <static>1</static>
       <link name='drc_practice_organge_jersey_barrier_10_link'>
        <pose frame="vrc_driving_terrain_link">-19.5245 1.29034 2.3 0 -0 0</pose>
         <visual name='visual'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
           <geometry>
             <mesh>
               <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
@@ -1263,6 +1943,17 @@
       <link name='drc_practice_white_jersey_barrier_04_link'>
       <pose frame="vrc_driving_terrain_link">-19.5023 3.03071 2.1 0 -0 0</pose>
         <visual name='visual'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
           <geometry>
             <mesh>
               <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
@@ -1279,12 +1970,22 @@
       </link>
       <!--pose frame=''>-19.5023 3.03071 -0.08961 0 -0 0</pose-->
     </model>
-
     <model name='drc_practice_organge_jersey_barrier_11'> <!-- south wall, south west quadrant, 3rd left from mid point south border reviewed-->
       <static>1</static>
       <link name='drc_practice_organge_jersey_barrier_11_link'>
         <pose frame="vrc_driving_terrain_link">-19.4562 4.75513 2.1 0 -0 0</pose>reviewed
         <visual name='visual'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
           <geometry>
             <mesh>
               <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
@@ -1300,10 +2001,20 @@
         </collision>
       </link>
     </model>
-
     <model name='drc_practice_white_jersey_barrier_03'>  <!-- South wall, 4th left from wall mid point reviewed-->
       <static>1</static>
       <link name='drc_practice_white_jersey_barrier_03_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">-19.4791 6.47968 2.15 0 -0 0</pose> 
        <visual name='visual'>
           <geometry>
@@ -1322,10 +2033,20 @@
       </link>
       <!--pose frame=''>-19.4791 6.47968 -0.08961 0 -0 0</pose-->
     </model>
-
     <model name='drc_practice_organge_jersey_barrier_12'> <!-- South wall, 5th left from wall mid point reviewed-->
       <static>1</static>
       <link name='drc_practice_organge_jersey_barrier_12_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">-19.4505 8.22987 2.18 0 0 0</pose>
         <visual name='visual'>
           <geometry>
@@ -1344,10 +2065,20 @@
       </link>
       <!--pose frame=''>-19.4505 8.22987 -0.08961 0 -0 0</pose-->
     </model>
-
     <model name='drc_practice_white_jersey_barrier_02'>  <!-- South wall, 6th left from wall mid point reviewed -->
       <static>1</static>
       <link name='drc_practice_white_jersey_barrier_02_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">-19.4572 9.97642 2.3 0 -0 0</pose>
         <visual name='visual'>
           <geometry>
@@ -1366,10 +2097,20 @@
       </link>
       <!--pose frame=''>-19.4572 9.97642 0.366817 0 -0 0</pose-->
     </model>
-
     <model name='drc_practice_organge_jersey_barrier_13'> <!-- South wall, 7th left from wall mid point reviewed-->
       <static>1</static>
       <link name='drc_practice_organge_jersey_barrier_13_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">-19.4091 11.7319 2.4 0 -0 0</pose>
         <visual name='visual'>
           <geometry>
@@ -1388,10 +2129,20 @@
       </link>
       <!--pose frame=''>-19.4091 11.7319 -0.08961 0 -0 0</pose-->
     </model>
-
     <model name='drc_practice_white_jersey_barrier_01'> <!-- South wall, 8th left from wall mid point reviewed-->
       <static>1</static>
       <link name='drc_practice_white_jersey_barrier_01_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">-19.402 13.4035 2.6 0 -0 0</pose>
         <visual name='visual'>
           <geometry>
@@ -1410,10 +2161,20 @@
       </link>
       <!--pose frame=''>-19.402 13.4035 -0.08961 0 -0 0</pose-->
     </model>
-
     <model name='drc_practice_blue_cylinder_02'> <!-- South wall, on the left of the 8th orange Jersey, left from wall mid point reviewed-->
       <static>1</static>
       <link name='drc_practice_blue_cylinder_02_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">-19.3573 15.0065 2.45 0 -0 0</pose>
         <visual name='visual'>
           <geometry>
@@ -1431,10 +2192,20 @@
         </collision>
       </link>
     </model>
-
     <model name='drc_practice_blue_cylinder_04'> <!-- South wall mid point, at 90 degrees, in the centre, on the left of 1st block, reviewed-->
       <static>1</static>
       <link name='drc_practice_blue_cylinder_04_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">-15.9237 0.76128 1.7 0 -0 0</pose>
         <visual name='visual'>
           <geometry>
@@ -1452,10 +2223,20 @@
         </collision>
       </link>
     </model>
-
     <model name='drc_practice_organge_jersey_barrier_09'>  <!-- South wall mid point, at 90 degrees, in the centre, 1st block, reviewed -->
       <static>1</static>
       <link name='drc_practice_organge_jersey_barrier_09_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">-16.5281 -0.055681 1.8 0 -0 1.57329</pose>
         <visual name='visual'>
           <geometry>
@@ -1473,10 +2254,20 @@
         </collision>
       </link>
     </model>
-
     <model name='drc_practice_white_jersey_barrier_05'> <!-- South wall mid point, at 90 degrees, in the centre, 2nd block, reviewed -->
       <static>1</static>
       <link name='drc_practice_white_jersey_barrier_05_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
       <pose frame="vrc_driving_terrain_link">-18.277 -0.050104 2.2 0 -0 1.58415</pose>
         <visual name='visual'>
           <geometry>
@@ -1495,10 +2286,20 @@
       </link>
       <!--pose frame=''>-18.277 -0.050104 -0.08961 0 -0 1.58415</pose-->
     </model>
-
     <model name='drc_practice_blue_cylinder_03'>  <!-- South wall mid point, at 90 degrees, in the centre, south of 2nd block, reviewed -->
       <static>1</static>
       <link name='drc_practice_blue_cylinder_03_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">-19.5294 -0.073863 2.45 0 -0 0</pose>
         <visual name='visual'>
           <geometry>
@@ -1516,10 +2317,20 @@
         </collision>
       </link>
     </model>
-
     <model name='drc_practice_organge_jersey_barrier_05'> <!-- South wall mid point, at 90 degrees, right of south wall centre point, 1st block, reviewed -->
       <static>1</static>
       <link name='drc_practice_organge_jersey_barrier_05_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">-16.6451 -4.39093 2.4 0 -0 1.57329</pose>
         <visual name='visual'>
           <geometry>
@@ -1538,10 +2349,20 @@
       </link>
       <!--pose frame=''>-16.6451 -4.39093 -0.08961 0 -0 1.57329</pose-->
     </model>
-
     <model name='drc_practice_white_jersey_barrier_06'> <!--South wall mid point, at 90 degrees, right of south wall centre point, 2nd block, reviewed-->
       <static>1</static>--
       <link name='drc_practice_white_jersey_barrier_06_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">-18.4319 -4.42396 2.25 0 -0 1.58415</pose>
         <visual name='visual'>
           <geometry>
@@ -1560,10 +2381,20 @@
       </link>
       <!--pose frame=''>-18.4319 -4.42396 -0.08961 0 -0 1.58415</pose-->
      </model>
-
     <model name='drc_practice_white_jersey_barrier_07'> <!--perimeter wall east - 1st from North, reviewed-->
       <static>1</static>
       <link name='drc_practice_white_jersey_barrier_07_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">-1.77829 -15.4517 1.75 0 -0 1.58415</pose> 
         <visual name='visual'>
           <geometry>
@@ -1582,10 +2413,20 @@
       </link>
      <!--pose frame=''>-1.77829 -15.4517 -0.08961 0 -0 1.58415</pose-->
     </model>
-
     <model name='drc_practice_organge_jersey_barrier_02'>  <!--perimeter wall east - 2nd from North, reviewed-->
       <static>1</static>
       <link name='drc_practice_organge_jersey_barrier_02_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
       <pose frame="vrc_driving_terrain_link">-3.521945 -15.4517 2.1 0 -0 1.58415</pose> 
         <visual name='visual'>
           <geometry>
@@ -1603,10 +2444,20 @@
         </collision>
       </link>
     </model>
-
     <model name='drc_practice_white_jersey_barrier_08'> <!--perimeter wall east - 3rd from North, reviewed-->
       <static>1</static>
       <link name='drc_practice_white_jersey_barrier_08_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">-5.2656 -15.4517 2.65 0 -0 1.58415</pose>
         <visual name='visual'>
           <geometry>
@@ -1625,10 +2476,20 @@
       </link>
       <!--pose frame=''>-5.2656 -15.4446 -0.08961 0 -0 1.58415</pose-->
     </model>
-
     <model name='drc_practice_organge_jersey_barrier_03'> <!--perimeter wall east - 4th from North, reviewed-->
       <static>1</static>
       <link name='drc_practice_organge_jersey_barrier_03_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">-6.99312 -15.4619 2.85 0 -0 1.57329</pose>
         <visual name='visual'>
           <geometry>
@@ -1646,10 +2507,20 @@
         </collision>
       </link>
     </model>
-
     <model name='drc_practice_white_jersey_barrier_09'> <!--perimeter wall east - 5th from North, reviewed-->
       <static>1</static>
       <link name='drc_practice_white_jersey_barrier_09_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">-8.71514 -15.4587 2.85 0 -0 1.58415</pose> 
         <visual name='visual'>
           <geometry>
@@ -1668,10 +2539,20 @@
       </link>
      <!--pose frame=''>-8.71514 -15.4587 -0.08961 0 -0 1.58415</pose-->
     </model>
-
     <model name='drc_practice_organge_jersey_barrier_04'> <!--perimeter wall east - 6th from North, reviewed-->
       <static>1</static>
       <link name='drc_practice_organge_jersey_barrier_04_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose  frame="vrc_driving_terrain_link">-10.4401 -15.5031 2.85 0 -0 1.57329</pose>
         <visual name='visual'>
           <geometry>
@@ -1690,10 +2571,20 @@
       </link>
       <!--pose frame=''>-10.4401 -15.5031 -0.08961 0 -0 1.57329</pose-->
     </model>
-
     <model name='drc_practice_white_jersey_barrier_10'> <!-- South East Quadrant, first diagonal jersey barrier, 1st block from mid line, reviewed -->
       <static>1</static>
       <link name='drc_practice_white_jersey_barrier_10_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">-10.6207 -1.99551 1.85 0 -0 0.793462</pose> 
         <visual name='visual'>
           <geometry>
@@ -1712,10 +2603,20 @@
       </link>
       <!--pose frame=''>-10.6207 -1.99551 -0.08961 0 -0 0.793462</pose-->
     </model>
-
     <model name='drc_practice_organge_jersey_barrier_01'>  <!-- South East Quadrant, first diagonal jersey barrier, 2nd block from mid line, reviewed -->
       <static>1</static>
       <link name='drc_practice_organge_jersey_barrier_01_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">-9.4003 -3.21467 1.85 0 -0 0.767445</pose>
         <visual name='visual'>
           <geometry>
@@ -1733,10 +2634,20 @@
         </collision>
       </link>
     </model>
-
     <model name='drc_practice_white_jersey_barrier_11'> <!-- South East Quadrant, first diagonal jersey barrier, 3rd block from mid line, reviewed -->
       <static>1</static>
       <link name='drc_practice_white_jersey_barrier_11_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">-8.19219 -4.48028 1.85 0 -0 0.764713</pose>
         <visual name='visual'>
           <geometry>
@@ -1754,10 +2665,20 @@
         </collision>
       </link>
     </model>
-
     <model name='drc_practice_white_jersey_barrier_12'> <!-- south east quadrant, mid point, 1st block vertical, reviewed-->
       <static>1</static>
       <link name='drc_practice_white_jersey_barrier_12_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">-2.40481 -5.18678 1.2 0 -0 1.58415</pose> 
         <visual name='visual'>
           <geometry>
@@ -1776,10 +2697,20 @@
       </link>
      <!--pose frame=''>-2.40481 -5.18678 -0.08961 0 -0 1.58415</pose-->
     </model>
-
     <model name='drc_practice_organge_jersey_barrier_06'>  <!-- south east quadrant, mid point, 2nd block vertical, reviewed-->
       <static>1</static>
       <link name='drc_practice_organge_jersey_barrier_06_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">-4.17422 -5.19204 1.2 0 -0 1.57329</pose>
         <visual name='visual'>
           <geometry>
@@ -1798,10 +2729,20 @@
       </link>
       <!--pose frame=''>-4.17422 -5.19204 -0.08961 0 -0 1.57329</pose-->
     </model>
-
     <model name='drc_practice_white_jersey_barrier_13'> <!-- south east quadrant, second diagonal jersey barrier, 1st block from mid line, reviewed-->
       <static>1</static>
       <link name='drc_practice_white_jersey_barrier_13_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">-12.957 -5.56536 2.3 0 -0 0.764713</pose>
         <visual name='visual'>
           <geometry>
@@ -1820,10 +2761,20 @@
       </link>
       <!--pose frame=''>-12.957 -5.56536 -0.08961 0 -0 0.764713</pose-->
     </model>   
-
     <model name='drc_practice_organge_jersey_barrier_08'>  <!-- south east quadrant, second diagonal jersey barrier, 2nd block from mid line, reviewed-->
       <static>1</static>
       <link name='drc_practice_organge_jersey_barrier_08_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">-11.7583 -6.77294 2.3 0 -0 0.767445</pose> 
         <visual name='visual'>
           <geometry>
@@ -1842,10 +2793,20 @@
       </link>
      <!--pose frame=''>-11.7583 -6.77294 -0.08961 0 -0 0.767445</pose-->
     </model>
-
     <model name='drc_practice_white_jersey_barrier_14'> <!-- south east quadrant, second diagonal jersey barrier, 3rd block from mid line, reviewed-->
       <static>1</static>
       <link name='drc_practice_white_jersey_barrier_14_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">-10.4933 -8.0637 2.3 0 -0 0.793462</pose>
         <visual name='visual'>
           <geometry>
@@ -1863,10 +2824,20 @@
         </collision>
       </link>
     </model>
-
     <model name='drc_practice_organge_jersey_barrier_07'>  <!-- south east quadrant, second diagonal jersey barrier, 4th block from mid line, reviewed-->
       <static>1</static>
       <link name='drc_practice_organge_jersey_barrier_07_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">-9.32951 -9.22777 2.3 0 -0 0.767445</pose>
         <visual name='visual'>
           <geometry>
@@ -1885,11 +2856,21 @@
       </link>
       <!--pose frame=''>-9.32951 -9.22777 -0.08961 0.101605 -0 0.767445</pose-->
     </model>
-
     <model name='drc_practice_white_jersey_barrier_15'>  <!-- south east quadrant, second diagonal jersey barrier, 3rd block from mid line, reviewed-->
       <static>1</static>
       <link name='drc_practice_white_jersey_barrier_15_link'>
        <pose frame="vrc_driving_terrain_link">-8.16568 -10.5211 2.3 0 -0 0.764713</pose>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <visual name='visual'>
           <geometry>
             <mesh>
@@ -1907,10 +2888,20 @@
       </link>
       <!--pose frame=''>-8.16568 -10.5211 -0.08961 0 -0 0.764713</pose-->
     </model>
- 
     <model name='grey_wall_0'> <!-- south east quadrant, east grey wall, reviewed -->
       <static>1</static>
       <link name='grey_wall_0_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
         <pose frame="vrc_driving_terrain_link">-15.7981 -15.6442 2.6 0 -0 0</pose>
         <collision name='collision'>
           <geometry>
@@ -1936,10 +2927,20 @@
         </visual>
       </link>
     </model>
-
     <model name='drc_practice_blue_cylinder_05'> <!-- south east quadrant, north of east grey wall, reviewed -->
       <static>1</static>
       <link name='drc_practice_blue_cylinder_05_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">-11.8509 -15.0313 2.8 0 -0 0</pose>
         <visual name='visual'>
           <geometry>
@@ -1957,10 +2958,20 @@
         </collision>
       </link>
     </model>
-
     <model name='grey_wall_1'> <!-- south east quadrant, south wall, closest to mid point, reviewed -->
       <static>1</static>
       <link name='grey_wall_1_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">-19.5272 -4.50658 3 0 -0 1.57185</pose>
         <collision name='collision'>
           <geometry>
@@ -1986,10 +2997,20 @@
         </visual>
       </link>
     </model>
-
     <model name='grey_wall_2'> <!-- south east quadrant, south wall, right of mid point south wall, reviewed-->
       <static>1</static>
       <link name='grey_wall_2_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">-19.549 -12.0056 3 0 -0 1.5614</pose>
         <collision name='collision'>
           <geometry>
@@ -2015,10 +3036,20 @@
         </visual>
       </link>
     </model>
-
      <model name='grey_wall_3'> <!-- north west quadrant, 1st north wall, from left, reviewed-->
       <static>1</static>
       <link name='grey_wall_3_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">11.1 10.2131 2.2 0 -0 1.57185</pose>
         <collision name='collision'>
           <geometry>
@@ -2044,10 +3075,20 @@
         </visual>
       </link>
     </model>
-
     <model name='grey_wall_4'> <!-- north west quadrant, 2nd north wall, from left, reviewed-->
       <static>1</static>
       <link name='grey_wall_4_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
       <pose frame="vrc_driving_terrain_link">11.1 2.77501 2.2 0 -0 1.57185</pose>
         <collision name='collision'>
           <geometry>
@@ -2076,6 +3117,17 @@
     <model name='grey_wall_5'> <!-- north west quadrant, 3rd north wall, from left, reviewed-->
       <static>1</static>
       <link name='grey_wall_5_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">11.1 -4.3 2.2 0 -0 1.57185</pose>
         <collision name='collision'>
           <geometry>
@@ -2101,10 +3153,20 @@
         </visual>
       </link>
     </model>
-
     <model name='grey_wall_7'> <!-- north west quadrant, 1st west wall, from north, reviewed-->
-      <static>1</static>
+      <static>true</static>
       <link name='grey_wall_7_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">7.38 13.872 2.2 0 -0 0</pose>
         <pose frame=''>0 0 1.4 0 -0 0</pose>
         <collision name='collision'>
@@ -2132,8 +3194,19 @@
       </link>
     </model>
     <model name='grey_wall_6'> <!-- north west quadrant, 2nd west wall, from north, reviewed-->
-      <static>1</static>
+      <static>true</static>
       <link name='grey_wall_6_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">-0.125095 13.872 2.2 0 -0 0</pose>
         <pose frame=''>0 0 1.4 0 -0 0</pose>
         <collision name='collision'>
@@ -2160,10 +3233,20 @@
         </visual>
       </link>
     </model>
-
     <model name='drc_practice_blue_cylinder_06'> <!-- north west quadrant, bottom left of 2nd west wall from north, reviewed-->
-      <static>1</static>
+      <static>true</static>
       <link name='drc_practice_blue_cylinder_06_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
        <pose frame="vrc_driving_terrain_link">-4.27748 14.289 2.1 0 -0 0</pose>
         <visual name='visual'>
           <geometry>
@@ -2190,7 +3273,7 @@
      <link name='Obstacle_Box_01_link'>
       <pose frame="vrc_driving_terrain_link">-11.3655 8.23329  2 -0 0</pose>
       <inertial>
-        <mass>3</mass>
+        <mass>5</mass>
         <inertia>
           <ixx>0.266667</ixx>
           <ixy>0</ixy>
@@ -2282,7 +3365,7 @@
      <link name='Obstacle_Box_02_link'>
       <pose frame="vrc_driving_terrain_link">-14.5259 10.9881 2.7 0 -0 0</pose>
       <inertial>
-        <mass>3</mass>
+        <mass>5</mass>
         <inertia>
           <ixx>0.1</ixx>
           <ixy>0</ixy>
@@ -2369,12 +3452,12 @@
   </model>
 
   <model name='Obstacle_Box_03'> <!-- south west quadrant, black cylinder, reviewed-->
-   <static>0</static>
+   <static>true</static>
    <allow_auto_disable>0</allow_auto_disable>
     <link name='Obstacle_Box_03_link'>
     <pose frame="vrc_driving_terrain_link">-14.4358 4.3505 2.60 0 -0 0</pose>
       <inertial>
-        <mass>2</mass>
+        <mass>5</mass>
         <inertia>
           <ixx>0.3</ixx>
           <ixy>0</ixy>
@@ -2461,6 +3544,10 @@
       </collision>
     </link>
   </model>
+
+
+
+
 
   <model name='Obstacle_Box_04'> <!-- south west quadrant, green cylinder, reviewed-->
    <static>False</static>

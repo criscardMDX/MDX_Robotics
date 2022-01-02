@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <robot name="mr_CCMDX1" xmlns:xacro="http://ros.org/wiki/xacro">
+<origin xyz="0 0 1"/>
 
   <xacro:property name="width" value="0.2" />
   <xacro:property name="wheelradius" value="0.05" />
@@ -48,6 +49,7 @@
     <gazebo reference="base_link">
       <material>Gazebo/Purple</material>
     </gazebo>
+
   <link name="robot_head_link">
     <visual>
       <geometry>
@@ -79,14 +81,65 @@
   <!-- This block connects the head_swivel joint to an actuator (motor), which informs both simulation and visualization of the robot -->
   <transmission name="head_swivel_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <actuator name="$head_swivel_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
     <joint name="head_swivel_joint">
       <!--hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface-->
-	<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
+    <actuator name="$head_swivel_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </actuator>
   </transmission>
+
+
+<!-- Here I need to add the stabiliser macro -->
+
+ <xacro:macro name="stabiliser" params="suffix_s reflect_s"> <!-- this macro will accept two parameters: suffix and reflect-->
+   <link name="${suffix_s}_stabiliser_link">
+    <visual>
+     <geometry>
+      <sphere radius="${width/3}"/>
+     </geometry>
+     <origin xyz="0 0 0" rpy="0 0 0"/>
+     <material name="black"/>
+    </visual>
+    <collision>
+     <geometry>
+      <sphere radius="${width/3}"/>
+     </geometry>
+     <origin xyz="0 0 0" rpy="0 0 0"/>
+    </collision>
+    <xacro:mdxcc1_inertial mass="4"/>
+   </link>
+
+   <joint name="${suffix_s}_stabiliser_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="${suffix_s}_stabiliser_link"/>
+    <axis xyz="0 0 1"/>
+    <origin xyz="${reflect_s*(0.07+(width/2))} 0 -${0.03+width/2}"/>
+    <limit effort="50" velocity="0.5"/>
+  </joint>
+
+   <gazebo reference="${suffix_s}_stabiliser_link">
+    <mu1 value="200.0"/>
+    <mu2 value="100.0"/>
+    <kp value="10000000.0" />
+    <kd value="1.0" />
+    <material>Gazebo/Black</material>
+   </gazebo>
+
+    <transmission name="${suffix_s}_stabiliser_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${suffix_s}_stabiliser_joint">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${suffix_s}_stabiliser_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </actuator>
+    </transmission>
+ </xacro:macro>
+
 
 <!-- Here I need to add the wheel macro -->
 
@@ -125,12 +178,13 @@
 
     <transmission name="${prefix}_${suffix}_wheel_trans">
       <type>transmission_interface/SimpleTransmission</type>
-      <actuator name="${prefix}_${suffix}_wheel_motor">
-        <mechanicalReduction>1</mechanicalReduction>
-      </actuator>
       <joint name="${prefix}_${suffix}_wheel_joint">
         <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       </joint>
+      <actuator name="${prefix}_${suffix}_wheel_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </actuator>
     </transmission>
   </xacro:macro>
 
@@ -216,8 +270,8 @@
   <xacro:leg prefix="right" reflect="-1" />
   <xacro:leg prefix="left" reflect="1" />
 
-
-
+  <xacro:stabiliser suffix_s="front" reflect_s="1" />
+  <xacro:stabiliser suffix_s="back" reflect_s="-1" />
 
   <joint name="camera_box_joint" type="fixed">
    <axis xyz="0 1 0" />
@@ -247,7 +301,7 @@
   </link>
 
     <gazebo reference="camera_link">
-      <material>Gazebo/White</material>
+      <material>Gazebo/YellowGlow</material>
     </gazebo>
 
 <!-- camera -->
@@ -294,15 +348,15 @@
   <!-- Hokuyo Laser -->
  <joint name="head_laser_sensor_joint" type="fixed">
     <axis xyz="0 0 0" />
-    <origin xyz="0 0 0.30"/>
-    <parent link="robot_head_link"/>
+    <origin xyz="0 0 0.36"/>
+    <parent link="base_link"/>
     <child link="hokuyo_link"/>
   </joint>
 
   <link name="hokuyo_link">
    <origin xyz="0 0 0" rpy="0 0 0"/>
     <collision>
-      <origin xyz="0 0 -0.02" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
        <box size="0.05 0.05 0.05"/>
       </geometry>
@@ -318,13 +372,13 @@
   </link>
 
     <gazebo reference="hokuyo_link">
-      <material>Gazebo/White</material>
+      <material>Gazebo/YellowGlow</material>
     </gazebo>
 
 <!-- hokuyo -->
   <gazebo reference="hokuyo_link">
     <sensor type="gpu_ray" name="head_hokuyo_sensor">
-      <pose>0 0 0.23 0 0 0</pose>
+      <pose>0 0 0 0 0 0</pose>
       <visualize>false</visualize>
       <update_rate>40</update_rate>
       <ray>
@@ -352,7 +406,7 @@
         </noise>
       </ray>
       <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_gpu_laser.so">
-        <topicName>/r2d2_diff_drive_controller/laser/scan</topicName>
+        <topicName>/ccmdx1/laser/scan</topicName>
         <frameName>hokuyo_link</frameName>
       </plugin>
     </sensor>

@@ -1,5 +1,17 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(mobile_robot_CCMDX1)
+project(mobile_robot_CCMDX1 CXX)
+find_package(catkin REQUIRED)
+find_package(catkin REQUIRED COMPONENTS roscpp tf )
+set(source navigation/drive_controller.cpp )
+include_directories(${catkin_INCLUDE_DIRS})
+
+add_executable(drive_controller_node ${source} )
+target_compile_options(drive_controller_node PUBLIC -std=c++11 -fpermissive -w -Wall )
+target_link_libraries(drive_controller_node  ${catkin_LIBRARIES} )
+
+
+
+
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -7,7 +19,11 @@ project(mobile_robot_CCMDX1)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED)
+
+
+
+
+
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
