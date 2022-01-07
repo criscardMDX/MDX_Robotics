@@ -15,7 +15,7 @@
 
 
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" />
-  <node name="rqt_gui" pkg="rqt_gui" type="rqt_gui"/>
+
 
   <!--rosparam file="$(find mobile_robot_CCMDX1)/config/pid_param.yaml" command="load" /-->
 
@@ -23,32 +23,32 @@
 
   <rosparam command="load"
             file="$(find mobile_robot_CCMDX1)/config/joints.yaml"
-            ns="ccmdx1_joint_state_controller" />
+            ns="r2d2_joint_state_controller" />
   <rosparam command="load"
             file="$(find mobile_robot_CCMDX1)/config/head.yaml"
-            ns="ccmdx1_head_controller" />
+            ns="r2d2_head_controller" />
   <rosparam command="load"
             file="$(find mobile_robot_CCMDX1)/config/diffdrive.yaml"
-            ns="ccmdx1_diff_drive_controller" />
+            ns="r2d2_diff_drive_controller" />
 
   <node name="r2d2_controller_spawner" pkg="controller_manager" type="spawner"
-    args="ccmdx1_diff_drive_controller
-          ccmdx1_head_controller
-          ccmdx1_diff_drive_controller
+    args="r2d2_joint_state_controller
+          r2d2_head_controller
+          r2d2_diff_drive_controller
           --shutdown-timeout 3"/>
 
 <!--Load the controllers -->
 
   <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop">
-    <remap from="cmd_vel" to="/ccmdx1_diff_drive_controller/cmd_vel"/>
+    <remap from="cmd_vel" to="/r2d2_diff_drive_controller/cmd_vel"/>
   </node>
 
   <node name="slam_gmapping" pkg="gmapping" type="slam_gmapping">
     <remap from="/scan" to="/ccmdx1/laser/scan"/>
-    <param name="hokuyo_link" value="base_link"/>
+    <param name="hokuyo_link" value="base_frame"/>
     <param name="delta" value="0.1" />
 
-   <rosparam>
+     <rosparam>
 
       odom_frame: odom
       base_frame: base_link
@@ -92,4 +92,3 @@
   <node pkg="tf" type="static_transform_publisher" name="laser_broadcaster" args="0 0 0.36 0 0 0 /base_link /laser/scan 100"/>
 
 </launch>
-
