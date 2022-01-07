@@ -1,4 +1,4 @@
-ccmdx1_diff_drive_controller:
+#ccmdx1_diff_drive_controller:
   type: "diff_drive_controller/DiffDriveController"
   publish_rate: 50
   left_wheel: ['left_front_wheel_joint', 'left_back_wheel_joint']
