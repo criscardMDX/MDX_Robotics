@@ -15,7 +15,7 @@
 
 
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" />
-
+  <node name="rqt_gui" pkg="rqt_gui" type="rqt_gui"/>
 
   <!--rosparam file="$(find mobile_robot_CCMDX1)/config/pid_param.yaml" command="load" /-->
 
@@ -23,29 +23,29 @@
 
   <rosparam command="load"
             file="$(find mobile_robot_CCMDX1)/config/joints.yaml"
-            ns="r2d2_joint_state_controller" />
+            ns="ccmdx1_joint_state_controller" />
   <rosparam command="load"
             file="$(find mobile_robot_CCMDX1)/config/head.yaml"
-            ns="r2d2_head_controller" />
+            ns="ccmdx1_head_controller" />
   <rosparam command="load"
             file="$(find mobile_robot_CCMDX1)/config/diffdrive.yaml"
-            ns="r2d2_diff_drive_controller" />
+            ns="ccmdx1_diff_drive_controller" />
 
   <node name="r2d2_controller_spawner" pkg="controller_manager" type="spawner"
-    args="r2d2_joint_state_controller
-          r2d2_head_controller
-          r2d2_diff_drive_controller
+    args="ccmdx1_diff_drive_controller
+          ccmdx1_head_controller
+          ccmdx1_diff_drive_controller
           --shutdown-timeout 3"/>
 
 <!--Load the controllers -->
 
   <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop">
-    <remap from="cmd_vel" to="/r2d2_diff_drive_controller/cmd_vel"/>
+    <remap from="cmd_vel" to="/ccmdx1_diff_drive_controller/cmd_vel"/>
   </node>
 
   <node name="slam_gmapping" pkg="gmapping" type="slam_gmapping">
     <remap from="/scan" to="/ccmdx1/laser/scan"/>
-    <param name="hokuyo_link" value="base_frame"/>
+    <param name="hokuyo_link" value="base_link"/>
     <param name="delta" value="0.1" />
 
    <rosparam>
@@ -53,16 +53,16 @@
       odom_frame: odom
       base_frame: base_link
       map_frame: map
-      map_update_interval: 0.5 # Publish new map
+      map_update_interval: 0.005 # Publish new map
 
-      maxUrange: 6 # Should be just less than sensor range
-      maxRange: 12 # Should be just greater than sensor range
-      particles: 150 # Increased from 80
+      maxUrange: 10 # Should be just less than sensor range
+      maxRange: 30 # Should be just greater than sensor range
+      particles: 1 # Increased from 80
 
       # Update frequencies
-      linearUpdate: 0.3
-      angularUpdate: 0.5
-      temporalUpdate: 2
+      linearUpdate: 0.1
+      angularUpdate: 0.174533
+      temporalUpdate: 0.03
       resampleThreshold: 0.5
 
       # Initial Map Size
@@ -71,6 +71,7 @@
       xmax: 100.0
       ymax: 100.0
       delta: 0.05 # 0.05
+      occ_treshold: 0.25
 
       # All default
       sigma: 0.05
@@ -86,9 +87,9 @@
       lasamplerange: 0.005
       lasamplestep: 0.005
      </rosparam>
-
   </node>
 
-  <node unless="$(arg use_gazebo)" pkg="tf" type="static_transform_publisher" name="laser_broadcaster" args="0 0 0.36 1.57 0 0 base_link laser 100" />
+  <node pkg="tf" type="static_transform_publisher" name="laser_broadcaster" args="0 0 0.36 0 0 0 /base_link /laser/scan 100"/>
 
 </launch>
+
