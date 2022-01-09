@@ -484,6 +484,18 @@
     <pose frame=''>5 5 0 0 0 0 0</pose>
   </model>
 
+      <model name='grey_wall'>
+        <pose frame=''>6.06572 10.2486 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>6.06572 10.2486 1.4 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+
+
 
 
     <light type="directional" name="my_light" cast_shadows="false">
