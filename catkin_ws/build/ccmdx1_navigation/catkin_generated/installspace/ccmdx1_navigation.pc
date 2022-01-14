@@ -1,0 +1,8 @@
+prefix=/home/cristiano/ROS/catkin_ws/install
+
+Name: ccmdx1_navigation
+Description: Description of ccmdx1_navigation
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
