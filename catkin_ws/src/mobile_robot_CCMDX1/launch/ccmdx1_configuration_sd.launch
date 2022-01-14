@@ -1,0 +1,51 @@
+<launch>
+
+  <!-- these are the arguments you can pass this launch file, for example paused:=true -->
+  <arg name="paused" default="false"/>
+  <arg name="use_gazebo" default="false" />
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <arg name="model" default="$(find mobile_robot_CCMDX1)/urdf/mr_CCMDX1.urdf"/>
+  <arg name="rvizconfig" default="$(find mobile_robot_CCMDX1)/rviz/urdf.rviz" />
+
+  <include file="$(find mobile_robot_CCMDX1)/launch/ccmdx1_gazebo.launch">
+    <arg name="model" value="$(arg model)" />
+  </include>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" />
+  <node name = "ccmdx1_rqt_dashboard" pkg = "rqt_gui" type = "rqt_gui" respawn = "false" output = "screen"/>
+
+<!--Load the joint controller configurations from YAML file to parameter server -->
+
+  <rosparam command="load"
+            file="$(find mobile_robot_CCMDX1)/config/joints.yaml"
+            ns="ccmdx1_joint_state_controller" />
+  <rosparam command="load"
+            file="$(find mobile_robot_CCMDX1)/config/head.yaml"
+            ns="ccmdx1_head_controller" />
+  
+  <rosparam command="load" file="$(find mobile_robot_CCMDX1)/config/diffdrive.yaml" ns="ccmdx1_diff_drive_controller" />
+  <rosparam command="load" file="$(find mobile_robot_CCMDX1)/config/pid_param.yaml" ns="ccmdx1_pid" />
+
+  <node name="r2d2_controller_spawner" pkg="controller_manager" type="spawner"
+    args="ccmdx1_joint_state_controller
+          ccmdx1_head_controller
+          ccmdx1_diff_drive_controller
+	  ccmdx1_pid
+          --shutdown-timeout 3"/>
+
+
+
+   <node pkg="sensor_node_pkg" type="sensor_node_type" name="sensor_node_name" output="screen">
+    <param name="sensor_param" value="param_value" />
+ </node>
+ <node pkg="odom_node_pkg" type="odom_node_type" name="odom_node" output="screen">
+    <param name="odom_param" value="param_value" />
+ </node>
+ <node pkg="transform_configuration_pkg" type="transform_configuration_type" name="transform_configuration_name" output="screen">
+    <param name="transform_configuration_param" value="param_value" />
+ </node>
+
+</launch> 

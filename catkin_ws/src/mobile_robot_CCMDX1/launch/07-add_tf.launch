@@ -1,0 +1,65 @@
+<!-- Here I am adding the robot_state_publisher node form the tutorial-->
+<launch>
+  <!-- these are the arguments you can pass this launch file, for example paused:=true -->
+  <arg name="paused" default="false"/>
+  <arg name="use_gazebo" default="false" />
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <arg name="model" default="$(find mobile_robot_CCMDX1)/urdf/mr_CCMDX1.urdf"/>
+  <arg name="rvizconfig" default="$(find mobile_robot_CCMDX1)/rviz/urdf.rviz" />
+
+<!--coords where I want to spawn the robot -->
+  <arg name="x" default="-18"/>
+  <arg name="y" default="+12"/>
+  <arg name="z" default="0.05"/>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" />
+  <node name = "ccmdx1_rqt_dashboard" pkg = "rqt_gui" type = "rqt_gui" respawn = "false" output = "screen"/>
+
+
+<param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
+  <!-- push robot_description to factory and spawn robot in gazebo, here I added the coordinates where I want to spawn the robot -->
+
+<node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
+   args="-x $(arg x) -y $(arg y) -z $(arg z) -unpause -urdf -model robot -param robot_description" respawn="false" output="screen" />  
+
+<!-- convert joint states to TF transforms for rviz, etc -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher"  name="robot_state_publisher" respawn="false" output="screen">
+   <param name="publish_frequency" type="double" value="30.0" />
+  </node>
+
+<!--Load the joint controller configurations from YAML file to parameter server -->
+
+  <rosparam command="load"
+            file="$(find mobile_robot_CCMDX1)/config/joints.yaml"
+            ns="ccmdx1_joint_state_controller" />
+  <rosparam command="load"
+            file="$(find mobile_robot_CCMDX1)/config/head.yaml"
+            ns="ccmdx1_head_controller" />
+  
+  <rosparam command="load" file="$(find mobile_robot_CCMDX1)/config/diffdrive.yaml" ns="ccmdx1_diff_drive_controller" />
+  <rosparam command="load" file="$(find mobile_robot_CCMDX1)/config/pid_param.yaml" ns="ccmdx1_pid" />
+
+  <node name="r2d2_controller_spawner" pkg="controller_manager" type="spawner"
+    args="ccmdx1_joint_state_controller
+          ccmdx1_head_controller
+          ccmdx1_diff_drive_controller
+	  ccmdx1_pid
+          --shutdown-timeout 3"/>
+
+
+  <!-- Map server -->
+  <arg name="map_file" default="$(find mobile_robot_CCMDX1)/ccmdx1_navigation/maps/ccmdx1_map.yaml"/>
+
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
+  <!-- Localization -->
+  <arg name="initial_pose_x" default="0.0"/>
+  <arg name="initial_pose_y" default="0.0"/>
+  <arg name="initial_pose_a" default="0.0"/>
+
+
+
+</launch>

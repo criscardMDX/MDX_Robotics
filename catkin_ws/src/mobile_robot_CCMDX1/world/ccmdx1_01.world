@@ -1,0 +1,4962 @@
+<?xml version="1.0"?> 
+<gazebo version="1.0">
+<world name="default">
+    <scene>
+      <ambient rgba="0.5 0.5 0.5 1"/>
+      <background rgba="0.5 0.5 0.5 1"/>
+      <shadows enabled="false"/>
+    </scene>
+
+    <physics type="ode">
+      <gravity xyz="0 0 -9.8"/>
+      <ode>
+        <solver type="quick" dt="0.001" iters="10" sor="1.3"/>
+        <constraints cfm="0.0" erp="0.2" contact_max_correcting_vel="100.0" contact_surface_layer="0.001"/>
+      </ode>
+    </physics>
+
+<!-- This is my plane -->
+
+      <model name="vrc_driving_terrain">
+      <static>1</static>
+      <link name="vrc_driving_terrain_link">
+      <inertial>
+        <mass>3</mass>
+        <inertia>
+          <ixx>0</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0</iyy>
+          <iyz>0</iyz>
+          <izz>0</izz>
+        </inertia>
+      </inertial>
+        <collision name='collision'>
+          <geometry>
+            <heightmap>
+              <uri>model://vrc_driving_terrain/materials/textures/heightmap.png</uri>
+              <size>500 500 118</size>
+              <pos>0 0 -10.5</pos>
+              <texture>
+                <size>10</size>
+                <diffuse>__default__</diffuse>
+                <normal>__default__</normal>
+              </texture>
+              <blend>
+                <min_height>0</min_height>
+                <fade_dist>0</fade_dist>
+              </blend>
+            </heightmap>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <heightmap>
+              <texture>
+                <diffuse>file://media/materials/textures/dirt_diffusespecular.png</diffuse>
+                <normal>file://media/materials/textures/flat_normal.png</normal>
+                <size>5</size>
+              </texture>
+              <texture>
+                <diffuse>file://media/materials/textures/grass_diffusespecular.png</diffuse>
+                <normal>file://media/materials/textures/flat_normal.png</normal>
+                <size>5</size>
+              </texture>
+              <texture>
+                <diffuse>file://media/materials/textures/fungus_diffusespecular.png</diffuse>
+                <normal>file://media/materials/textures/flat_normal.png</normal>
+                <size>20</size>
+              </texture>
+              <blend>
+                <min_height>15</min_height>
+                <fade_dist>5</fade_dist>
+              </blend>
+              <blend>
+                <min_height>30</min_height>
+                <fade_dist>10</fade_dist>
+              </blend>
+              <uri>model://vrc_driving_terrain/materials/textures/heightmap.png</uri>
+              <size>500 500 118</size>
+              <pos>0 0 -10.5</pos>
+            </heightmap>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+<!-- now we put the goal box; the robot will have to arrive here -->
+
+<model name='box_target_green'>   <!-- south east quadrant, goal point -->
+      <static>1</static>
+    <link name='box_target_green_link'>
+      <pose frame="vrc_driving_terrain_link">-18 -14.2 2.73 0 -0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>2 2 0.05</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://box_target_green/meshes/mesh.dae</uri>
+	      <scale>0.5 0.5 0.2</scale>   <!-- here I had to add a scale, as the target box is too big -->
+            </mesh>
+          </geometry>
+        </visual>
+    </link>
+ </model>
+
+
+<!-- now we put the fix obstacles -->
+
+    <model name='drc_practice_angled_barrier_135'>  <!-- mid line, towards south west quadrant, 45 degree jersey fence reviewed-->
+      <pose frame="vrc_driving_terrain_link">-14.5837 1.06101 1 0 -0 0</pose> <!--Modified-->
+      <static>1</static>
+      <link name='one::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>0 0 0.7 0 0 -1.5707</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='two::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>1.7646 -0.008563 0.8 0 0 -1.5707</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='three::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>3.52922 -0.016171 0.67 0 0 -1.5707</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='four::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>5.13431 0.54837 0.3 0 0 -0.785398</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='five::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>6.3884 1.79074 0.2 0 0 -0.785398</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='six::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>7.6423 3.03258 0.2 0 0 -0.785398</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='seven::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>8.89611 4.27529 0.15 0 0 -0.785398</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='eight::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>10.1496 5.51614 0 0 0 -0.785398</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='nine::link'>
+      <inertial>
+        <mass>5</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>11.0288 6.44203 -0.05 0 -0 0</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='ten::link'>
+      <inertial>
+        <mass>5</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>11.0288 6.44203 0.816 0 -0 0</pose>
+      </link>
+    </model>
+
+<model name='drc_practice_angled_barrier_135_0'> <!-- mid line, 45 degree jersey fence bending left towards north west quadrant, reviewed-->
+      <static>1</static>
+      <pose frame="vrc_driving_terrain_link">-6.74865 -1.22415 0.80 0 -0 0</pose> <!--Modified-->
+      <link name='one::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>0 0 0.5 0 0 -1.5707</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='two::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>1.7646 -0.008563 0.4 0 0 -1.5707</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='three::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>3.52922 -0.016171 0.3 0 0 -1.5707</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='four::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>5.13431 0.54837 0.2 0 0 -0.785398</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='five::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>6.3884 1.79074 0.2 0 0 -0.785398</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='six::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>7.6423 3.03258 0.2 0 0 -0.785398</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='seven::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>8.89611 4.27529 0.15 0 0 -0.785398</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='eight::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>10.1496 5.51614 0 0 0 -0.785398</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='nine::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>11.0288 6.44203 0 0 -0 0</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='ten::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>11.0288 6.44203 0.866 0 -0 0</pose> <!--Modified-->
+      </link>
+    </model>
+
+    <model name='drc_practice_angled_barrier_135_1'>  <!--north east quadrant, first 45 degrees barrier from north, perimeter wall top right, reviewed-->
+      <static>1</static>
+      <pose frame="vrc_driving_terrain_link">-0.030907 -15.4277 2.5 0 -0 0</pose>  <!--Modified-->
+      <link name='one::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>0 0 -0.85 0 0 -1.5707</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='two::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>1.7646 -0.008563 -0.85 0 0 -1.5707</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='three::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>3.52922 -0.016171 -0.65 0 0 -1.5707</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='four::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>5.13431 0.54837 -0.45 0 0 -0.785398</pose>  <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='five::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>6.3884 1.79074 -0.35 0 0 -0.785398</pose>  <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='six::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>7.6423 3.03258 -0.4 0 0 -0.785398</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='seven::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>8.89611 4.27529 -0.4 0 0 -0.785398</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='eight::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>10.1496 5.51614 -0.4 0 0 -0.785398</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='nine::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>11.0288 6.44203 -0.65 0 -0 0</pose>  <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='ten::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>11.0288 6.44203 0.20 0 -0 0</pose> <!--Modified-->
+      </link>
+    </model>
+
+    <model name='drc_practice_angled_barrier_135_0_clone'> <!--north east quadrant, first 45 degrees barrier from north, middle of quadrant, reviewed-->
+      <static>1</static>
+      <pose frame="vrc_driving_terrain_link">-4.58796 -8.45133 1.7 0 0 -0.7404</pose> <!--Modified-->
+      <link name='one::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>0 0 0 0 0 -1.5707</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='two::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>1.7646 -0.008563 0 0 0 -1.5707</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='three::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>3.52922 -0.016171 0.0 0 0 -1.5707</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='four::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>5.13431 0.54837 0.25 0 0 -0.785398</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='five::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>6.3884 1.79074 0.3 0 0 -0.785398</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='six::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>7.6423 3.03258 0.25 0 0 -0.785398</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='seven::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>8.89611 4.27529 0.3 0 0 -0.785398</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='eight::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>10.1496 5.51614 0.3 0 0 -0.785398</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='nine::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>11.0288 6.44203 0.35 0 -0 0</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='ten::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>11.0288 6.44203 1.20 0 -0 0</pose> <!--Modified-->
+      </link>
+    </model>
+
+    <model name='drc_practice_angled_barrier_45_0'> <!--south west quadrant, first 45 degrees barrier from north, reviewed-->
+     <pose frame="">-10.016 14.3278 0.7 0 -0 0</pose> <!--I use this to place the set of links relative to the world-->
+      <static>1</static>
+      <link name='one::link'>
+       <pose frame=''>0 0 1.4 0 0 -1.5707</pose> <!--this one to further adjust the height and positioning angle-->
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      <static>1</static>
+      <link name='two::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>1.7646 -0.008563 1.2 0 0 -1.5707</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='three::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>3.52922 -0.016171 1.2 0 0 -1.5707</pose>  <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='four::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>5.2559 -0.59667 1.1 0 0 -2.3562</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='five::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>6.49818 -1.85004 0.8 0 0 -2.3562</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='six::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>7.74031 -3.10261 0.8 0 0 -2.3562</pose>  <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='seven::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>8.98256 -4.3561 0.5 0 0 -2.3562</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='eight::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>10.2248 -5.60978 0.5 0 0 -2.3562</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='nine::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>11.0288 -6.44203 0.4 0 -0 0</pose>
+      </link>
+      <static>1</static>
+      <link name='ten::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>11.0288 -6.44203 1.266 0 -0 0</pose>
+      </link>
+    </model>
+
+
+ <model name='drc_practice_angled_barrier_45'> <!--south west quadrant, second 45 degrees barrier from north, reviewed-->
+      <pose frame="vrc_driving_terrain_link">-18.0928 15.2163 1.25 0 -0 0</pose>
+      <static>1</static>
+      <link name='one::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>0 0 1.2 0 0 -1.5707</pose>
+      </link>
+      <static>1</static>
+      <link name='two::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>1.7646 -0.008563 1.2 0 0 -1.5707</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='three::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>3.52922 -0.016171 1.2 0 0 -1.5707</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='four::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>5.2559 -0.59667 1.25 0 0 -2.3562</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='five::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>6.49818 -1.85004 1.1 0 0 -2.3562</pose>  <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='six::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>7.74031 -3.10261 0.9 0 0 -2.3562</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='seven::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>8.98256 -4.3561 0.75 0 0 -2.3562</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='eight::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>10.2248 -5.60978 0.4 0 0 -2.3562</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='nine::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>11.0288 -6.44203 1.15 0 -0 0</pose> <!--Modified-->
+      </link>
+      <static>1</static>
+      <link name='ten::link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <pose frame=''>11.0288 -6.44203 0.3 0 -0 0</pose>  <!--Modified-->
+      </link>
+    </model>
+    <model name='drc_practice_blue_cylinder_01'>  <!-- south west quadrant, south end of the 45 degree jersey barrier reviewed-->
+      <static>True</static>
+      <link name='drc_practice_blue_cylinder_01_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+      <pose frame="vrc_driving_terrain_link">-11.5418 14.2916 2.36 0 -0 0</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    <model name='drc_practice_organge_jersey_barrier_10'> <!-- south wall, south west quadrant, 1st left from mid point south border reviewed-->
+      <static>1</static>
+      <link name='drc_practice_organge_jersey_barrier_10_link'>
+       <pose frame="vrc_driving_terrain_link">-19.5245 1.29034 2.3 0 -0 0</pose>
+        <visual name='visual'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <model name='drc_practice_white_jersey_barrier_04'> <!-- south wall, south west quadrant, 2nd left from mid point south border reviewed-->
+      <static>1</static>
+      <link name='drc_practice_white_jersey_barrier_04_link'>
+      <pose frame="vrc_driving_terrain_link">-19.5023 3.03071 2.1 0 -0 0</pose>
+        <visual name='visual'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      <!--pose frame=''>-19.5023 3.03071 -0.08961 0 -0 0</pose-->
+    </model>
+    <model name='drc_practice_organge_jersey_barrier_11'> <!-- south wall, south west quadrant, 3rd left from mid point south border reviewed-->
+      <static>1</static>
+      <link name='drc_practice_organge_jersey_barrier_11_link'>
+        <pose frame="vrc_driving_terrain_link">-19.4562 4.75513 2.1 0 -0 0</pose>reviewed
+        <visual name='visual'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    <model name='drc_practice_white_jersey_barrier_03'>  <!-- South wall, 4th left from wall mid point reviewed-->
+      <static>1</static>
+      <link name='drc_practice_white_jersey_barrier_03_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">-19.4791 6.47968 2.15 0 -0 0</pose> 
+       <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      <!--pose frame=''>-19.4791 6.47968 -0.08961 0 -0 0</pose-->
+    </model>
+    <model name='drc_practice_organge_jersey_barrier_12'> <!-- South wall, 5th left from wall mid point reviewed-->
+      <static>1</static>
+      <link name='drc_practice_organge_jersey_barrier_12_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">-19.4505 8.22987 2.18 0 0 0</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      <!--pose frame=''>-19.4505 8.22987 -0.08961 0 -0 0</pose-->
+    </model>
+    <model name='drc_practice_white_jersey_barrier_02'>  <!-- South wall, 6th left from wall mid point reviewed -->
+      <static>1</static>
+      <link name='drc_practice_white_jersey_barrier_02_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">-19.4572 9.97642 2.3 0 -0 0</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      <!--pose frame=''>-19.4572 9.97642 0.366817 0 -0 0</pose-->
+    </model>
+    <model name='drc_practice_organge_jersey_barrier_13'> <!-- South wall, 7th left from wall mid point reviewed-->
+      <static>1</static>
+      <link name='drc_practice_organge_jersey_barrier_13_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">-19.4091 11.7319 2.4 0 -0 0</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      <!--pose frame=''>-19.4091 11.7319 -0.08961 0 -0 0</pose-->
+    </model>
+    <model name='drc_practice_white_jersey_barrier_01'> <!-- South wall, 8th left from wall mid point reviewed-->
+      <static>1</static>
+      <link name='drc_practice_white_jersey_barrier_01_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">-19.402 13.4035 2.6 0 -0 0</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      <!--pose frame=''>-19.402 13.4035 -0.08961 0 -0 0</pose-->
+    </model>
+    <model name='drc_practice_blue_cylinder_02'> <!-- South wall, on the left of the 8th orange Jersey, left from wall mid point reviewed-->
+      <static>1</static>
+      <link name='drc_practice_blue_cylinder_02_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">-19.3573 15.0065 2.45 0 -0 0</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    <model name='drc_practice_blue_cylinder_04'> <!-- South wall mid point, at 90 degrees, in the centre, on the left of 1st block, reviewed-->
+      <static>1</static>
+      <link name='drc_practice_blue_cylinder_04_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">-15.9237 0.76128 1.7 0 -0 0</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    <model name='drc_practice_organge_jersey_barrier_09'>  <!-- South wall mid point, at 90 degrees, in the centre, 1st block, reviewed -->
+      <static>1</static>
+      <link name='drc_practice_organge_jersey_barrier_09_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">-16.5281 -0.055681 1.8 0 -0 1.57329</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    <model name='drc_practice_white_jersey_barrier_05'> <!-- South wall mid point, at 90 degrees, in the centre, 2nd block, reviewed -->
+      <static>1</static>
+      <link name='drc_practice_white_jersey_barrier_05_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+      <pose frame="vrc_driving_terrain_link">-18.277 -0.050104 2.2 0 -0 1.58415</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      <!--pose frame=''>-18.277 -0.050104 -0.08961 0 -0 1.58415</pose-->
+    </model>
+    <model name='drc_practice_blue_cylinder_03'>  <!-- South wall mid point, at 90 degrees, in the centre, south of 2nd block, reviewed -->
+      <static>1</static>
+      <link name='drc_practice_blue_cylinder_03_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">-19.5294 -0.073863 2.45 0 -0 0</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    <model name='drc_practice_organge_jersey_barrier_05'> <!-- South wall mid point, at 90 degrees, right of south wall centre point, 1st block, reviewed -->
+      <static>1</static>
+      <link name='drc_practice_organge_jersey_barrier_05_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">-16.6451 -4.39093 2.4 0 -0 1.57329</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      <!--pose frame=''>-16.6451 -4.39093 -0.08961 0 -0 1.57329</pose-->
+    </model>
+    <model name='drc_practice_white_jersey_barrier_06'> <!--South wall mid point, at 90 degrees, right of south wall centre point, 2nd block, reviewed-->
+      <static>1</static>--
+      <link name='drc_practice_white_jersey_barrier_06_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">-18.4319 -4.42396 2.25 0 -0 1.58415</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      <!--pose frame=''>-18.4319 -4.42396 -0.08961 0 -0 1.58415</pose-->
+     </model>
+    <model name='drc_practice_white_jersey_barrier_07'> <!--perimeter wall east - 1st from North, reviewed-->
+      <static>1</static>
+      <link name='drc_practice_white_jersey_barrier_07_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">-1.77829 -15.4517 1.75 0 -0 1.58415</pose> 
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+     <!--pose frame=''>-1.77829 -15.4517 -0.08961 0 -0 1.58415</pose-->
+    </model>
+    <model name='drc_practice_organge_jersey_barrier_02'>  <!--perimeter wall east - 2nd from North, reviewed-->
+      <static>1</static>
+      <link name='drc_practice_organge_jersey_barrier_02_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+      <pose frame="vrc_driving_terrain_link">-3.521945 -15.4517 2.1 0 -0 1.58415</pose> 
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    <model name='drc_practice_white_jersey_barrier_08'> <!--perimeter wall east - 3rd from North, reviewed-->
+      <static>1</static>
+      <link name='drc_practice_white_jersey_barrier_08_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">-5.2656 -15.4517 2.65 0 -0 1.58415</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      <!--pose frame=''>-5.2656 -15.4446 -0.08961 0 -0 1.58415</pose-->
+    </model>
+    <model name='drc_practice_organge_jersey_barrier_03'> <!--perimeter wall east - 4th from North, reviewed-->
+      <static>1</static>
+      <link name='drc_practice_organge_jersey_barrier_03_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">-6.99312 -15.4619 2.85 0 -0 1.57329</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    <model name='drc_practice_white_jersey_barrier_09'> <!--perimeter wall east - 5th from North, reviewed-->
+      <static>1</static>
+      <link name='drc_practice_white_jersey_barrier_09_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">-8.71514 -15.4587 2.85 0 -0 1.58415</pose> 
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+     <!--pose frame=''>-8.71514 -15.4587 -0.08961 0 -0 1.58415</pose-->
+    </model>
+    <model name='drc_practice_organge_jersey_barrier_04'> <!--perimeter wall east - 6th from North, reviewed-->
+      <static>1</static>
+      <link name='drc_practice_organge_jersey_barrier_04_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose  frame="vrc_driving_terrain_link">-10.4401 -15.5031 2.85 0 -0 1.57329</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      <!--pose frame=''>-10.4401 -15.5031 -0.08961 0 -0 1.57329</pose-->
+    </model>
+    <model name='drc_practice_white_jersey_barrier_10'> <!-- South East Quadrant, first diagonal jersey barrier, 1st block from mid line, reviewed -->
+      <static>1</static>
+      <link name='drc_practice_white_jersey_barrier_10_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">-10.6207 -1.99551 1.85 0 -0 0.793462</pose> 
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      <!--pose frame=''>-10.6207 -1.99551 -0.08961 0 -0 0.793462</pose-->
+    </model>
+    <model name='drc_practice_organge_jersey_barrier_01'>  <!-- South East Quadrant, first diagonal jersey barrier, 2nd block from mid line, reviewed -->
+      <static>1</static>
+      <link name='drc_practice_organge_jersey_barrier_01_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">-9.4003 -3.21467 1.85 0 -0 0.767445</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    <model name='drc_practice_white_jersey_barrier_11'> <!-- South East Quadrant, first diagonal jersey barrier, 3rd block from mid line, reviewed -->
+      <static>1</static>
+      <link name='drc_practice_white_jersey_barrier_11_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">-8.19219 -4.48028 1.85 0 -0 0.764713</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    <model name='drc_practice_white_jersey_barrier_12'> <!-- south east quadrant, mid point, 1st block vertical, reviewed-->
+      <static>1</static>
+      <link name='drc_practice_white_jersey_barrier_12_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">-2.40481 -5.18678 1.2 0 -0 1.58415</pose> 
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+     <!--pose frame=''>-2.40481 -5.18678 -0.08961 0 -0 1.58415</pose-->
+    </model>
+    <model name='drc_practice_organge_jersey_barrier_06'>  <!-- south east quadrant, mid point, 2nd block vertical, reviewed-->
+      <static>1</static>
+      <link name='drc_practice_organge_jersey_barrier_06_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">-4.17422 -5.19204 1.2 0 -0 1.57329</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      <!--pose frame=''>-4.17422 -5.19204 -0.08961 0 -0 1.57329</pose-->
+    </model>
+    <model name='drc_practice_white_jersey_barrier_13'> <!-- south east quadrant, second diagonal jersey barrier, 1st block from mid line, reviewed-->
+      <static>1</static>
+      <link name='drc_practice_white_jersey_barrier_13_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">-12.957 -5.56536 2.3 0 -0 0.764713</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      <!--pose frame=''>-12.957 -5.56536 -0.08961 0 -0 0.764713</pose-->
+    </model>   
+    <model name='drc_practice_organge_jersey_barrier_08'>  <!-- south east quadrant, second diagonal jersey barrier, 2nd block from mid line, reviewed-->
+      <static>1</static>
+      <link name='drc_practice_organge_jersey_barrier_08_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">-11.7583 -6.77294 2.3 0 -0 0.767445</pose> 
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+     <!--pose frame=''>-11.7583 -6.77294 -0.08961 0 -0 0.767445</pose-->
+    </model>
+    <model name='drc_practice_white_jersey_barrier_14'> <!-- south east quadrant, second diagonal jersey barrier, 3rd block from mid line, reviewed-->
+      <static>1</static>
+      <link name='drc_practice_white_jersey_barrier_14_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">-10.4933 -8.0637 2.3 0 -0 0.793462</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    <model name='drc_practice_organge_jersey_barrier_07'>  <!-- south east quadrant, second diagonal jersey barrier, 4th block from mid line, reviewed-->
+      <static>1</static>
+      <link name='drc_practice_organge_jersey_barrier_07_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">-9.32951 -9.22777 2.3 0 -0 0.767445</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_orange_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      <!--pose frame=''>-9.32951 -9.22777 -0.08961 0.101605 -0 0.767445</pose-->
+    </model>
+    <model name='drc_practice_white_jersey_barrier_15'>  <!-- south east quadrant, second diagonal jersey barrier, 3rd block from mid line, reviewed-->
+      <static>1</static>
+      <link name='drc_practice_white_jersey_barrier_15_link'>
+       <pose frame="vrc_driving_terrain_link">-8.16568 -10.5211 2.3 0 -0 0.764713</pose>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_white_jersey_barrier/meshes/jersey_barrier.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      <!--pose frame=''>-8.16568 -10.5211 -0.08961 0 -0 0.764713</pose-->
+    </model>
+    <model name='grey_wall_0'> <!-- south east quadrant, east grey wall, reviewed -->
+      <static>1</static>
+      <link name='grey_wall_0_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+        <pose frame="vrc_driving_terrain_link">-15.7981 -15.6442 2.6 0 -0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>7.5 0.2 2.8</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <box>
+              <size>7.5 0.2 2.8</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://grey_wall/materials/scripts</uri>
+              <uri>model://grey_wall/materials/textures</uri>
+              <name>vrc/grey_wall</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name='drc_practice_blue_cylinder_05'> <!-- south east quadrant, north of east grey wall, reviewed -->
+      <static>1</static>
+      <link name='drc_practice_blue_cylinder_05_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">-11.8509 -15.0313 2.8 0 -0 0</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    <model name='grey_wall_1'> <!-- south east quadrant, south wall, closest to mid point, reviewed -->
+      <static>1</static>
+      <link name='grey_wall_1_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">-19.5272 -4.50658 3 0 -0 1.57185</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>7.5 0.2 2.8</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <box>
+              <size>7.5 0.2 2.8</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://grey_wall/materials/scripts</uri>
+              <uri>model://grey_wall/materials/textures</uri>
+              <name>vrc/grey_wall</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name='grey_wall_2'> <!-- south east quadrant, south wall, right of mid point south wall, reviewed-->
+      <static>1</static>
+      <link name='grey_wall_2_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">-19.549 -12.0056 3 0 -0 1.5614</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>7.5 0.2 2.8</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <box>
+              <size>7.5 0.2 2.8</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://grey_wall/materials/scripts</uri>
+              <uri>model://grey_wall/materials/textures</uri>
+              <name>vrc/grey_wall</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+     <model name='grey_wall_3'> <!-- north west quadrant, 1st north wall, from left, reviewed-->
+      <static>1</static>
+      <link name='grey_wall_3_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">11.1 10.2131 2.2 0 -0 1.57185</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>7.5 0.2 2.8</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <box>
+              <size>7.5 0.2 2.8</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://grey_wall/materials/scripts</uri>
+              <uri>model://grey_wall/materials/textures</uri>
+              <name>vrc/grey_wall</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name='grey_wall_4'> <!-- north west quadrant, 2nd north wall, from left, reviewed-->
+      <static>1</static>
+      <link name='grey_wall_4_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+      <pose frame="vrc_driving_terrain_link">11.1 2.77501 2.2 0 -0 1.57185</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>7.5 0.2 2.8</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <box>
+              <size>7.5 0.2 2.8</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://grey_wall/materials/scripts</uri>
+              <uri>model://grey_wall/materials/textures</uri>
+              <name>vrc/grey_wall</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name='grey_wall_5'> <!-- north west quadrant, 3rd north wall, from left, reviewed-->
+      <static>1</static>
+      <link name='grey_wall_5_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">11.1 -4.3 2.2 0 -0 1.57185</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>7.5 0.2 2.8</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <box>
+              <size>7.5 0.2 2.8</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://grey_wall/materials/scripts</uri>
+              <uri>model://grey_wall/materials/textures</uri>
+              <name>vrc/grey_wall</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name='grey_wall_7'> <!-- north west quadrant, 1st west wall, from north, reviewed-->
+      <static>true</static>
+      <link name='grey_wall_7_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">7.38 13.872 2.2 0 -0 0</pose>
+        <pose frame=''>0 0 1.4 0 -0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>7.5 0.2 2.8</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <box>
+              <size>7.5 0.2 2.8</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://grey_wall/materials/scripts</uri>
+              <uri>model://grey_wall/materials/textures</uri>
+              <name>vrc/grey_wall</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name='grey_wall_6'> <!-- north west quadrant, 2nd west wall, from north, reviewed-->
+      <static>true</static>
+      <link name='grey_wall_6_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">-0.125095 13.872 2.2 0 -0 0</pose>
+        <pose frame=''>0 0 1.4 0 -0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>7.5 0.2 2.8</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <box>
+              <size>7.5 0.2 2.8</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://grey_wall/materials/scripts</uri>
+              <uri>model://grey_wall/materials/textures</uri>
+              <name>vrc/grey_wall</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name='drc_practice_blue_cylinder_06'> <!-- north west quadrant, bottom left of 2nd west wall from north, reviewed-->
+      <static>true</static>
+      <link name='drc_practice_blue_cylinder_06_link'>
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+       <pose frame="vrc_driving_terrain_link">-4.27748 14.289 2.1 0 -0 0</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://drc_practice_blue_cylinder/meshes/cylinder.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+<!-- now I position the non static obstacles -->
+
+  <model name='Obstacle_Box_01'> <!-- south west quadrant, red cube, reviewed-->
+   <static>False</static>
+   <allow_auto_disable>0</allow_auto_disable>
+     <link name='Obstacle_Box_01_link'>
+      <pose frame="vrc_driving_terrain_link">-11.3655 8.23329  2 -0 0</pose>
+      <inertial>
+        <mass>5</mass>
+        <inertia>
+          <ixx>0.266667</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.266667</iyy>
+          <iyz>0</iyz>
+          <izz>0.266667</izz>
+        </inertia>
+      </inertial>
+      <visual name='visual'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1 1 1.5</size>
+          </box>
+        </geometry>
+        <material>
+          <lighting>1</lighting>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Red</name>
+          </script>
+          <shader type='pixel'/>
+        </material>
+        <transparency>0</transparency>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+      <collision name='collision'>
+        <laser_retro>0</laser_retro>
+        <max_contacts>10</max_contacts>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1 1 1.5</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+            <torsional>
+              <coefficient>1</coefficient>
+              <patch_radius>0</patch_radius>
+              <surface_radius>0</surface_radius>
+              <use_patch_radius>1</use_patch_radius>
+              <ode>
+                <slip>0</slip>
+              </ode>
+            </torsional>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>1e+06</threshold>
+          </bounce>
+          <contact>
+            <collide_without_contact>0</collide_without_contact>
+            <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+            <collide_bitmask>1</collide_bitmask>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+            <bullet>
+              <split_impulse>1</split_impulse>
+              <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+            </bullet>
+          </contact>
+        </surface>
+      </collision>
+    </link>
+  </model>
+
+  <model name='Obstacle_Box_02'> <!-- south west quadrant, blue sphere, reviewed-->
+   <static>False</static>
+   <allow_auto_disable>0</allow_auto_disable>
+     <link name='Obstacle_Box_02_link'>
+      <pose frame="vrc_driving_terrain_link">-14.5259 10.9881 2.7 0 -0 0</pose>
+      <inertial>
+        <mass>5</mass>
+        <inertia>
+          <ixx>0.1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.1</iyy>
+          <iyz>0</iyz>
+          <izz>0.1</izz>
+        </inertia>
+      </inertial>
+      <visual name='visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.5</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <lighting>1</lighting>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Blue</name>
+          </script>
+          <shader type='pixel'/>
+        </material>
+        <transparency>0</transparency>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+      <collision name='collision'>
+        <laser_retro>0</laser_retro>
+        <max_contacts>10</max_contacts>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.5</radius>
+          </sphere>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+            <torsional>
+              <coefficient>1</coefficient>
+              <patch_radius>0</patch_radius>
+              <surface_radius>0</surface_radius>
+              <use_patch_radius>1</use_patch_radius>
+              <ode>
+                <slip>0</slip>
+              </ode>
+            </torsional>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>1e+06</threshold>
+          </bounce>
+          <contact>
+            <collide_without_contact>0</collide_without_contact>
+            <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+            <collide_bitmask>1</collide_bitmask>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+            <bullet>
+              <split_impulse>1</split_impulse>
+              <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+            </bullet>
+          </contact>
+        </surface>
+      </collision>
+    </link>
+  </model>
+
+  <model name='Obstacle_Box_03'> <!-- south west quadrant, black cylinder, reviewed-->
+   <static>true</static>
+   <allow_auto_disable>0</allow_auto_disable>
+    <link name='Obstacle_Box_03_link'>
+    <pose frame="vrc_driving_terrain_link">-14.4358 4.3505 2.60 0 -0 0</pose>
+      <inertial>
+        <mass>5</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+      <visual name='visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.5</radius>
+            <length>1.5</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <lighting>1</lighting>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Black</name>
+          </script>
+          <shader type='pixel'/>
+        </material>
+        <transparency>0</transparency>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+      <collision name='collision'>
+        <laser_retro>0</laser_retro>
+        <max_contacts>10</max_contacts>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.5</radius>
+            <length>1.5</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+            <torsional>
+              <coefficient>1</coefficient>
+              <patch_radius>0</patch_radius>
+              <surface_radius>0</surface_radius>
+              <use_patch_radius>1</use_patch_radius>
+              <ode>
+                <slip>0</slip>
+              </ode>
+            </torsional>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>1e+06</threshold>
+          </bounce>
+          <contact>
+            <collide_without_contact>0</collide_without_contact>
+            <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+            <collide_bitmask>1</collide_bitmask>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+            <bullet>
+              <split_impulse>1</split_impulse>
+              <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+            </bullet>
+          </contact>
+        </surface>
+      </collision>
+    </link>
+  </model>
+
+
+
+
+
+  <model name='Obstacle_Box_04'> <!-- south west quadrant, green cylinder, reviewed-->
+   <static>False</static>
+   <allow_auto_disable>0</allow_auto_disable>
+   <link name='Obstacle_Box_04_link'>
+    <pose frame="vrc_driving_terrain_link">4.15329 10.7595 1.70 0 -0 0</pose>
+      <inertial>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+      <pose frame=''>0 0 0 0 0 0</pose>
+      <visual name='visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.5</radius>
+            <length>1</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <lighting>1</lighting>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Green</name>
+          </script>
+          <shader type='pixel'/>
+        </material>
+        <transparency>0</transparency>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+      <collision name='collision'>
+        <laser_retro>0</laser_retro>
+        <max_contacts>10</max_contacts>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.5</radius>
+            <length>1</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+            <torsional>
+              <coefficient>1</coefficient>
+              <patch_radius>0</patch_radius>
+              <surface_radius>0</surface_radius>
+              <use_patch_radius>1</use_patch_radius>
+              <ode>
+                <slip>0</slip>
+              </ode>
+            </torsional>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>1e+06</threshold>
+          </bounce>
+          <contact>
+            <collide_without_contact>0</collide_without_contact>
+            <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+            <collide_bitmask>1</collide_bitmask>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+            <bullet>
+              <split_impulse>1</split_impulse>
+              <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+            </bullet>
+          </contact>
+        </surface>
+      </collision>
+    </link>
+  </model>
+
+ <model name='Obstacle_Box_09'> <!-- north west quadrant, Zinc Yellow cylinder-->
+   <static>False</static>
+   <allow_auto_disable>0</allow_auto_disable>
+    <link name='Obstacle_Box_09_link'>
+     <pose frame="vrc_driving_terrain_link">8.81112 -0.923791 1.72 0 -0 0</pose>
+      <inertial>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.145833</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.145833</iyy>
+          <iyz>0</iyz>
+          <izz>0.125</izz>
+        </inertia>
+      </inertial>
+      <visual name='visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.5</radius>
+            <length>1</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <lighting>1</lighting>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/ZincYellow</name>
+          </script>
+          <shader type='pixel'/>
+        </material>
+        <transparency>0</transparency>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+      <collision name='collision'>
+        <laser_retro>0</laser_retro>
+        <max_contacts>10</max_contacts>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.5</radius>
+            <length>1</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+            <torsional>
+              <coefficient>1</coefficient>
+              <patch_radius>0</patch_radius>
+              <surface_radius>0</surface_radius>
+              <use_patch_radius>1</use_patch_radius>
+              <ode>
+                <slip>0</slip>
+              </ode>
+            </torsional>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>1e+06</threshold>
+          </bounce>
+          <contact>
+            <collide_without_contact>0</collide_without_contact>
+            <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+            <collide_bitmask>1</collide_bitmask>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+            <bullet>
+              <split_impulse>1</split_impulse>
+              <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+            </bullet>
+          </contact>
+        </surface>
+      </collision>
+    </link>
+  </model>
+
+<model name='Obstacle_Box_16'> <!-- north east quadrant, Purple cylinder-->
+   <static>False</static>
+   <allow_auto_disable>0</allow_auto_disable>
+    <link name='Obstacle_Box_16_link'>
+      <pose frame="vrc_driving_terrain_link">0.713931 -5.21936 1.95 0 0 0</pose>
+      <inertial>
+        <mass>3</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+      <visual name='visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.5</radius>
+            <length>1</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <lighting>1</lighting>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Purple</name>
+          </script>
+          <shader type='pixel'/>
+        </material>
+        <transparency>0</transparency>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+      <collision name='collision'>
+        <laser_retro>0</laser_retro>
+        <max_contacts>10</max_contacts>
+        <pose frame=''>0 0 0.1 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.5</radius>
+            <length>1</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+            <torsional>
+              <coefficient>1</coefficient>
+              <patch_radius>0</patch_radius>
+              <surface_radius>0</surface_radius>
+              <use_patch_radius>1</use_patch_radius>
+              <ode>
+                <slip>0</slip>
+              </ode>
+            </torsional>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>1e+06</threshold>
+          </bounce>
+          <contact>
+            <collide_without_contact>0</collide_without_contact>
+            <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+            <collide_bitmask>1</collide_bitmask>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+            <bullet>
+              <split_impulse>1</split_impulse>
+              <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+            </bullet>
+          </contact>
+        </surface>
+      </collision>
+    </link>
+  </model>
+
+<model name='Obstacle_Box_17'> <!-- north east quadrant, Grey cube-->
+   <static>False</static>
+   <allow_auto_disable>0</allow_auto_disable>
+    <link name='Obstacle_Box_17_link'>
+     <pose frame="vrc_driving_terrain_link">-13.8223 -1.81878 2.75 0 -0 0</pose>
+      <inertial>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.166667</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.166667</iyy>
+          <iyz>0</iyz>
+          <izz>0.166667</izz>
+        </inertia>
+      </inertial>
+      <visual name='visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>1 1 1</size>
+          </box>
+        </geometry>
+        <material>
+          <lighting>1</lighting>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+          <shader type='pixel'/>
+        </material>
+        <transparency>0</transparency>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+      <collision name='collision'>
+        <laser_retro>0</laser_retro>
+        <max_contacts>10</max_contacts>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>1 1 1</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+            <torsional>
+              <coefficient>1</coefficient>
+              <patch_radius>0</patch_radius>
+              <surface_radius>0</surface_radius>
+              <use_patch_radius>1</use_patch_radius>
+              <ode>
+                <slip>0</slip>
+              </ode>
+            </torsional>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>1e+06</threshold>
+          </bounce>
+          <contact>
+            <collide_without_contact>0</collide_without_contact>
+            <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+            <collide_bitmask>1</collide_bitmask>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+            <bullet>
+              <split_impulse>1</split_impulse>
+              <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+            </bullet>
+          </contact>
+        </surface>
+      </collision>
+    </link>
+  </model>
+
+<model name='Obstacle_Box_13'> <!-- north east quadrant, Blue cylinder-->
+   <static>False</static>
+   <allow_auto_disable>0</allow_auto_disable>
+    <link name='Obstacle_Box_13_link'>
+      <pose frame="vrc_driving_terrain_link">3.2 -2 1.75 0 -0 0</pose>
+       <inertial>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.18</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.18</iyy>
+          <iyz>0</iyz>
+          <izz>0.18</izz>
+        </inertia>
+      </inertial>
+      <visual name='visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.5</radius>
+            <length>1</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <lighting>1</lighting>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Blue</name>
+          </script>
+          <shader type='pixel'/>
+        </material>
+        <transparency>0</transparency>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+      <collision name='collision'>
+        <laser_retro>0</laser_retro>
+        <max_contacts>10</max_contacts>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.5</radius>
+            <length>1</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+            <torsional>
+              <coefficient>1</coefficient>
+              <patch_radius>0</patch_radius>
+              <surface_radius>0</surface_radius>
+              <use_patch_radius>1</use_patch_radius>
+              <ode>
+                <slip>0</slip>
+              </ode>
+            </torsional>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>1e+06</threshold>
+          </bounce>
+          <contact>
+            <collide_without_contact>0</collide_without_contact>
+            <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+            <collide_bitmask>1</collide_bitmask>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+            <bullet>
+              <split_impulse>1</split_impulse>
+              <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+            </bullet>
+          </contact>
+        </surface>
+      </collision>
+    </link>
+  </model>
+
+<model name='Obstacle_Box_08'> <!-- north west quadrant, blue cylinder-->
+   <static>False</static>
+   <allow_auto_disable>0</allow_auto_disable>
+    <link name='Obstacle_Box_08_link'>
+     <pose frame="vrc_driving_terrain_link">6.13282 2.06497 1.35 0 0 0</pose>
+     <kinematic>True</kinematic>
+       <inertial>
+        <mass>5</mass>
+        <inertia>
+          <ixx>0.18</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.18</iyy>
+          <iyz>0</iyz>
+          <izz>0.18</izz>
+        </inertia>
+      </inertial>
+      <visual name='visual'>
+        <geometry>
+          <cylinder>
+            <radius>0.5</radius>
+            <length>1</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <lighting>1</lighting>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Blue</name>
+          </script>
+          <shader type='pixel'/>
+        </material>
+        <transparency>0</transparency>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+      <collision name='collision'>
+        <laser_retro>0</laser_retro>
+        <max_contacts>10</max_contacts>
+        <geometry>
+          <cylinder>
+            <radius>0.5</radius>
+            <length>1</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+            <torsional>
+              <coefficient>1</coefficient>
+              <patch_radius>0</patch_radius>
+              <surface_radius>0</surface_radius>
+              <use_patch_radius>1</use_patch_radius>
+              <ode>
+                <slip>0</slip>
+              </ode>
+            </torsional>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>1e+06</threshold>
+          </bounce>
+          <contact>
+            <collide_without_contact>0</collide_without_contact>
+            <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+            <collide_bitmask>1</collide_bitmask>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+            <bullet>
+              <split_impulse>1</split_impulse>
+              <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+            </bullet>
+          </contact>
+        </surface>
+      </collision>
+    </link>
+  </model>
+
+  <model name="Obstacle_Box_05"> <!-- north west quadrant, grey cylinder-->
+   <static>False</static>
+   <allow_auto_disable>0</allow_auto_disable>
+    <link name='Obstacle_Box_05_link'>
+     <pose frame="vrc_driving_terrain_link">8.14191 10.7143 2.39 0 -0 0</pose>
+     <kinematic>True</kinematic>
+      <inertial>
+        <mass>3</mass>
+        <inertia>
+          <ixx>0.2</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.2</iyy>
+          <iyz>0</iyz>
+          <izz>0.2</izz>
+        </inertia>
+      </inertial>
+      <visual name='visual'>
+        <geometry>
+          <cylinder>
+            <radius>0.5</radius>
+            <length>1</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <lighting>1</lighting>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+          <shader type='pixel'/>
+        </material>
+        <transparency>0</transparency>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+      <collision name='collision'>
+        <laser_retro>0</laser_retro>
+        <max_contacts>10</max_contacts>
+        <geometry>
+          <cylinder>
+            <radius>0.5</radius>
+            <length>1</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+            <torsional>
+              <coefficient>1</coefficient>
+              <patch_radius>0</patch_radius>
+              <surface_radius>0</surface_radius>
+              <use_patch_radius>1</use_patch_radius>
+              <ode>
+                <slip>0</slip>
+              </ode>
+            </torsional>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>1e+06</threshold>
+          </bounce>
+          <contact>
+            <collide_without_contact>0</collide_without_contact>
+            <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+            <collide_bitmask>1</collide_bitmask>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+            <bullet>
+              <split_impulse>1</split_impulse>
+              <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+            </bullet>
+          </contact>
+        </surface>
+      </collision>
+    </link>
+  </model>
+
+  <model name='Obstacle_Box_06'> <!-- north west quadrant, white cylinder-->
+   <static>False</static>
+   <allow_auto_disable>0</allow_auto_disable>
+    <link name='Obstacle_Box_06_link'>
+     <pose frame="vrc_driving_terrain_link">7.49127 6.52869 1.73 0 -0 0</pose>
+     <kinematic>True</kinematic>
+      <inertial>
+        <mass>3</mass>
+        <inertia>
+          <ixx>0.145833</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.145833</iyy>
+          <iyz>0</iyz>
+          <izz>0.125</izz>
+        </inertia>
+      </inertial>
+      <visual name='visual'>
+        <geometry>
+          <cylinder>
+            <radius>0.5</radius>
+            <length>1</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <lighting>1</lighting>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/White</name>
+          </script>
+          <shader type='pixel'/>
+        </material>
+        <transparency>0</transparency>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+      <collision name='collision'>
+        <laser_retro>0</laser_retro>
+        <max_contacts>10</max_contacts>
+        <geometry>
+          <cylinder>
+            <radius>0.5</radius>
+            <length>1</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+            <torsional>
+              <coefficient>1</coefficient>
+              <patch_radius>0</patch_radius>
+              <surface_radius>0</surface_radius>
+              <use_patch_radius>1</use_patch_radius>
+              <ode>
+                <slip>0</slip>
+              </ode>
+            </torsional>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>1e+06</threshold>
+          </bounce>
+          <contact>
+            <collide_without_contact>0</collide_without_contact>
+            <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+            <collide_bitmask>1</collide_bitmask>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+            <bullet>
+              <split_impulse>1</split_impulse>
+              <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+            </bullet>
+          </contact>
+        </surface>
+      </collision>
+    </link>
+  </model>
+
+  <model name='Obstacle_Box_07'> <!-- north west quadrant, orange cylinder-->
+   <static>False</static>
+   <allow_auto_disable>0</allow_auto_disable>
+    <link name='Obstacle_Box_07_link'>
+     <pose frame="vrc_driving_terrain_link">9.70381 3.73402 1.30 0 -0 0</pose>
+     <kinematic>True</kinematic>
+      <inertial>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.18</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.18</iyy>
+          <iyz>0</iyz>
+          <izz>0.18</izz>
+        </inertia>
+      </inertial>
+      <visual name='visual'>
+        <geometry>
+          <cylinder>
+            <radius>0.5</radius>
+            <length>1</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <lighting>1</lighting>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Orange</name>
+          </script>
+          <shader type='pixel'/>
+        </material>
+        <transparency>0</transparency>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+      <collision name='collision'>
+        <laser_retro>0</laser_retro>
+        <max_contacts>10</max_contacts>
+        <geometry>
+          <cylinder>
+            <radius>0.5</radius>
+            <length>1</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+            <torsional>
+              <coefficient>1</coefficient>
+              <patch_radius>0</patch_radius>
+              <surface_radius>0</surface_radius>
+              <use_patch_radius>1</use_patch_radius>
+              <ode>
+                <slip>0</slip>
+              </ode>
+            </torsional>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>1e+06</threshold>
+          </bounce>
+          <contact>
+            <collide_without_contact>0</collide_without_contact>
+            <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+            <collide_bitmask>1</collide_bitmask>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+            <bullet>
+              <split_impulse>1</split_impulse>
+              <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+            </bullet>
+          </contact>
+        </surface>
+      </collision>
+    </link>
+  </model>
+
+ <model name='Obstacle_Box_10'> <!-- north west quadrant, Red Bright cylinder-->
+   <static>False</static>
+   <allow_auto_disable>0</allow_auto_disable>
+    <link name='Obstacle_Box_10_link'>
+     <pose frame="vrc_driving_terrain_link">6.40455 12.8555 2.8 0 -0 0</pose>
+     <kinematic>True</kinematic>
+      <inertial>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.3</izz>
+        </inertia>
+      </inertial>
+      <visual name='visual'>
+        <geometry>
+          <cylinder>
+            <radius>0.6</radius>
+            <length>1</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <lighting>1</lighting>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/RedBright</name>
+          </script>
+          <shader type='pixel'/>
+        </material>
+        <transparency>0</transparency>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+      <collision name='collision'>
+        <laser_retro>0</laser_retro>
+        <max_contacts>10</max_contacts>
+        <geometry>
+          <cylinder>
+            <radius>0.6</radius>
+            <length>1</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+            <torsional>
+              <coefficient>1</coefficient>
+              <patch_radius>0</patch_radius>
+              <surface_radius>0</surface_radius>
+              <use_patch_radius>1</use_patch_radius>
+              <ode>
+                <slip>0</slip>
+              </ode>
+            </torsional>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>1e+06</threshold>
+          </bounce>
+          <contact>
+            <collide_without_contact>0</collide_without_contact>
+            <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+            <collide_bitmask>1</collide_bitmask>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+            <bullet>
+              <split_impulse>1</split_impulse>
+              <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+            </bullet>
+          </contact>
+        </surface>
+      </collision>
+    </link>
+  </model>
+
+ <model name='Obstacle_Box_11'> <!-- north east quadrant, Indigo cylinder-->
+   <static>False</static>
+   <allow_auto_disable>0</allow_auto_disable>
+    <link name='Obstacle_Box_11_link'>
+     <pose frame="vrc_driving_terrain_link">5 -2 1.7 0 -0 0</pose>
+     <kinematic>True</kinematic>
+       <inertial>
+        <mass>2</mass>
+        <inertia>
+          <ixx>0.18</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.18</iyy>
+          <iyz>0</iyz>
+          <izz>0.18</izz>
+        </inertia>
+      </inertial>
+      <!--pose frame=''>4.7134 -2.273 0.41039 0 -0 0</pose-->
+      <visual name='visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.5</radius>
+            <length>1</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <lighting>1</lighting>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Indigo</name>
+          </script>
+          <shader type='pixel'/>
+        </material>
+        <transparency>0</transparency>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+      <collision name='collision'>
+        <laser_retro>0</laser_retro>
+        <max_contacts>10</max_contacts>
+        <pose frame=''>0 0 0.00 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.5</radius>
+            <length>1</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+            <torsional>
+              <coefficient>1</coefficient>
+              <patch_radius>0</patch_radius>
+              <surface_radius>0</surface_radius>
+              <use_patch_radius>1</use_patch_radius>
+              <ode>
+                <slip>1</slip>
+              </ode>
+            </torsional>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>1e+06</threshold>
+          </bounce>
+          <contact>
+            <collide_without_contact>0</collide_without_contact>
+            <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+            <collide_bitmask>1</collide_bitmask>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+            <bullet>
+              <split_impulse>1</split_impulse>
+              <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+            </bullet>
+          </contact>
+        </surface>
+      </collision>
+    </link>
+  </model>
+
+ <model name='Obstacle_Box_12'> <!-- north east quadrant, red glow cylinder-->
+   <static>False</static>
+   <allow_auto_disable>0</allow_auto_disable>
+    <link name='Obstacle_Box_12_link'>
+     <pose frame="vrc_driving_terrain_link">6.97993 -5.07684 1.85 0 -0 0</pose>
+     <kinematic>False</kinematic>
+      <inertial>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.2</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.2</iyy>
+          <iyz>0</iyz>
+          <izz>0.2</izz>
+        </inertia>
+      </inertial>
+      <visual name='visual'>
+        <geometry>
+          <cylinder>
+            <radius>0.5</radius>
+            <length>1</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <lighting>1</lighting>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/RedGlow</name>
+          </script>
+          <shader type='pixel'/>
+        </material>
+        <transparency>0</transparency>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+      <collision name='collision'>
+        <laser_retro>0</laser_retro>
+        <max_contacts>10</max_contacts>
+        <geometry>
+          <cylinder>
+            <radius>0.5</radius>
+            <length>1</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.4</mu>
+              <mu2>0.4</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+            <torsional>
+              <coefficient>1</coefficient>
+              <patch_radius>0</patch_radius>
+              <surface_radius>0</surface_radius>
+              <use_patch_radius>1</use_patch_radius>
+              <ode>
+                <slip>1</slip>
+              </ode>
+            </torsional>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>1e+06</threshold>
+          </bounce>
+          <contact>
+            <collide_without_contact>0</collide_without_contact>
+            <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+            <collide_bitmask>1</collide_bitmask>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+            <bullet>
+              <split_impulse>1</split_impulse>
+              <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+            </bullet>
+          </contact>
+        </surface>
+      </collision>
+    </link>
+  </model>
+
+ <model name='Obstacle_Box_14'> <!-- north east quadrant, white cylinder-->
+   <static>False</static>
+   <allow_auto_disable>0</allow_auto_disable>
+    <link name='Obstacle_Box_14_link'>
+     <pose frame="vrc_driving_terrain_link">9.90575 -7.04368 2.32 0 -0 0</pose>
+     <kinematic>True</kinematic>
+      <inertial>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.18</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.18</iyy>
+          <iyz>0</iyz>
+          <izz>0.18</izz>
+        </inertia>
+      </inertial>
+      <visual name='visual'>
+        <geometry>
+          <cylinder>
+            <radius>0.5</radius>
+            <length>1</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <lighting>1</lighting>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/White</name>
+          </script>
+          <shader type='pixel'/>
+        </material>
+        <transparency>0</transparency>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+      <collision name='collision'>
+        <laser_retro>0</laser_retro>
+        <max_contacts>10</max_contacts>
+        <geometry>
+          <cylinder>
+            <radius>0.5</radius>
+            <length>1</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+            <torsional>
+              <coefficient>1</coefficient>
+              <patch_radius>0</patch_radius>
+              <surface_radius>0</surface_radius>
+              <use_patch_radius>1</use_patch_radius>
+              <ode>
+                <slip>0</slip>
+              </ode>
+            </torsional>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>1e+06</threshold>
+          </bounce>
+          <contact>
+            <collide_without_contact>0</collide_without_contact>
+            <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+            <collide_bitmask>1</collide_bitmask>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+            <bullet>
+              <split_impulse>1</split_impulse>
+              <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+            </bullet>
+          </contact>
+        </surface>
+      </collision>
+    </link>
+  </model>
+
+ <model name='Obstacle_Box_15'> <!-- north east quadrant, Dark Yellow cylinder-->
+   <static>False</static>
+   <allow_auto_disable>0</allow_auto_disable>
+    <link name='Obstacle_Box_15_link'>
+     <pose frame="vrc_driving_terrain_link">4.36212 -7.73081 2.15 0 -0 0</pose>
+     <kinematic>True</kinematic>
+      <inertial>
+        <mass>1</mass>
+        <inertia>
+          <ixx>1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1</iyy>
+          <iyz>0</iyz>
+          <izz>1</izz>
+        </inertia>
+      </inertial>
+      <visual name='visual'>
+        <geometry>
+          <cylinder>
+            <radius>0.5</radius>
+            <length>1</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <lighting>1</lighting>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/DarkYellow</name>
+          </script>
+          <shader type='pixel'/>
+        </material>
+        <transparency>0</transparency>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+      <collision name='collision'>
+        <laser_retro>0</laser_retro>
+        <max_contacts>10</max_contacts>
+        <geometry>
+          <cylinder>
+            <radius>0.5</radius>
+            <length>1</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+            <torsional>
+              <coefficient>1</coefficient>
+              <patch_radius>0</patch_radius>
+              <surface_radius>0</surface_radius>
+              <use_patch_radius>1</use_patch_radius>
+              <ode>
+                <slip>0</slip>
+              </ode>
+            </torsional>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>1e+06</threshold>
+          </bounce>
+          <contact>
+            <collide_without_contact>0</collide_without_contact>
+            <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+            <collide_bitmask>1</collide_bitmask>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+            <bullet>
+              <split_impulse>1</split_impulse>
+              <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+            </bullet>
+          </contact>
+        </surface>
+      </collision>
+    </link>
+  </model>
+
+  <model name='Obstacle_Box_18'> <!-- south east quadrant, turquoise sphere-->
+   <static>False</static>
+   <allow_auto_disable>True</allow_auto_disable>
+    <link name='Obstacle_Box_18_link'>
+     <pose frame="vrc_driving_terrain_link">-5.3376 -12.6272 3 0 -0 0</pose>
+      <inertial>
+        <mass>3</mass>
+        <inertia>
+          <ixx>0.15</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.15</iyy>
+          <iyz>0</iyz>
+          <izz>0.15</izz>
+        </inertia>
+      </inertial>
+      <visual name='visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.5</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <lighting>1</lighting>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Turquoise</name>
+          </script>
+          <shader type='pixel'/>
+        </material>
+        <transparency>0</transparency>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+      <collision name='collision'>
+        <laser_retro>0</laser_retro>
+        <max_contacts>10</max_contacts>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.5</radius>
+          </sphere>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+            <torsional>
+              <coefficient>1</coefficient>
+              <patch_radius>0</patch_radius>
+              <surface_radius>0</surface_radius>
+              <use_patch_radius>1</use_patch_radius>
+              <ode>
+                <slip>0</slip>
+              </ode>
+            </torsional>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>1e+06</threshold>
+          </bounce>
+          <contact>
+            <collide_without_contact>0</collide_without_contact>
+            <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+            <collide_bitmask>1</collide_bitmask>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+            <bullet>
+              <split_impulse>1</split_impulse>
+              <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+            </bullet>
+          </contact>
+        </surface>
+      </collision>
+    </link>
+  </model>
+
+    <light type="directional" name="my_light" cast_shadows="false">
+      <origin pose="0 0 30 0 0 0"/>
+      <diffuse rgba=".9 .9 .9 1"/>
+      <specular rgba=".1 .1 .1 1"/>
+      <attenuation range="20"/>
+      <direction xyz="0 0 -1"/>
+    </light>
+  </world>
+</gazebo>
+

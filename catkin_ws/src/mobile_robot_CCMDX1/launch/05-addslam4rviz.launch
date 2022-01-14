@@ -18,7 +18,7 @@
 
   <!--rosparam file="$(find mobile_robot_CCMDX1)/config/pid_param.yaml" command="load" /-->
 
-
+<!--Load the joint controller configurations from YAML file to parameter server -->
 
   <rosparam command="load"
             file="$(find mobile_robot_CCMDX1)/config/joints.yaml"
@@ -36,8 +36,16 @@
           r2d2_diff_drive_controller
           --shutdown-timeout 3"/>
 
-  <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
-    <param name="default_topic" value="/r2d2_diff_drive_controller/cmd_vel"/>
+<!--Load the controllers -->
+
+  <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop">
+    <remap from="cmd_vel" to="/r2d2_diff_drive_controller/cmd_vel"/>
   </node>
+
+  <node name="slam_gmapping" pkg="gmapping" type="slam_gmapping">
+    <remap from="/scan" to="/r2d2_diff_drive_controller/laser/scan"/>
+    <param name="hokuyo_link" value="base_footprint"/>
+  </node>
+
 
 </launch>

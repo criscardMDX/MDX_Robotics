@@ -1,0 +1,108 @@
+<launch>
+  <!-- these are the arguments you can pass this launch file, for example paused:=true -->
+  <arg name="paused" default="false"/>
+  <arg name="use_gazebo" default="false" />
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <arg name="model" default="$(find mobile_robot_CCMDX1)/urdf/mr_CCMDX1.urdf"/>
+  <arg name="rvizconfig" default="$(find mobile_robot_CCMDX1)/rviz/urdf.rviz" />
+
+  <include file="$(find mobile_robot_CCMDX1)/launch/ccmdx1_gazebo_b.launch">
+    <arg name="model" value="$(arg model)" />
+  </include>
+
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" />
+  <node name = "ccmdx1_rqt_dashboard" pkg = "rqt_gui" type = "rqt_gui" respawn = "false" output = "screen"/>
+
+
+<!--Load the joint controller configurations from YAML file to parameter server -->
+
+  <rosparam command="load"
+            file="$(find mobile_robot_CCMDX1)/config/joints.yaml"
+            ns="ccmdx1_joint_state_controller" />
+  <rosparam command="load"
+            file="$(find mobile_robot_CCMDX1)/config/head.yaml"
+            ns="ccmdx1_head_controller" />
+  
+  <rosparam command="load" file="$(find mobile_robot_CCMDX1)/config/diffdrive.yaml" ns="ccmdx1_diff_drive_controller" />
+  <rosparam command="load" file="$(find mobile_robot_CCMDX1)/config/pid_param.yaml" ns="ccmdx1_pid" />
+
+  <node name="r2d2_controller_spawner" pkg="controller_manager" type="spawner"
+    args="ccmdx1_joint_state_controller
+          ccmdx1_head_controller
+          ccmdx1_diff_drive_controller
+	  ccmdx1_pid
+          --shutdown-timeout 3"/>
+
+<!--Load the controllers -->
+
+  <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop">
+    <remap from="cmd_vel" to="/ccmdx1_diff_drive_controller/cmd_vel"/>
+  </node>
+
+  <node name="slam_gmapping" pkg="gmapping" type="slam_gmapping">
+    <remap from="/scan" to="/ccmdx1/laser/scan"/>
+    <param name="hokuyo_link" value="base_frame"/>
+    <param name="base_frame" value="base_link"/>
+    <param name="odom_frame" value="odom" />
+    <param name="delta" value="0.1" />
+    <param name="minimumScore" value="80"/>
+
+<!-- From http://docs.ros.org/en/hydro/api/gmapping/html/index.html -->
+
+     <rosparam>
+
+      odom_frame: odom
+      base_frame: base_link
+      map_frame: map
+      scan: base_scan
+      map_update_interval: 0.005 # Publish new map
+      throttle_scans: 1
+
+      maxUrange: 48 # Should be just less than sensor range
+      maxRange: 53 # Should be just greater than sensor range
+      particles: 1 # Increased from 80
+
+      # Update frequencies
+      linearUpdate: 0.1
+      angularUpdate: 0.174533
+      temporalUpdate: 0.02
+      resampleThreshold: 0.05
+
+      # Initial Map Size
+      xmin: -40.0
+      ymin: -40.0
+      xmax: 40.0
+      ymax: 40.0
+      occ_treshold: 0.25
+
+      # All default
+      sigma: 0.05
+      kernelSize: 1
+      lstep: 0.08
+      astep: 0.08
+      iterations: 180 # 5
+      lsigma: 0.075
+      ogain: 3.0
+      lskip: 10
+      llsamplerange: 0.01
+      llsamplestep: 0.01
+      lasamplerange: 0.005
+      lasamplestep: 0.005
+
+      srr: 0.1
+      stt: 0.2
+      srt: 0.01
+      str: 0.2
+      resampleThreshold: 100
+
+     </rosparam>
+  </node>
+
+  <node pkg="tf" type="static_transform_publisher" name="laser_broadcaster" args="0 0 0.36 0 0 0 /base_link /ccmdx1/laser/scan 100"/>
+
+
+</launch>
