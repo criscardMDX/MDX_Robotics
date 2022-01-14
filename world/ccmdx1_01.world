@@ -21,7 +21,7 @@
       <static>1</static>
       <link name="vrc_driving_terrain_link">
       <inertial>
-        <mass>10</mass>
+        <mass>3</mass>
         <inertia>
           <ixx>0</ixx>
           <ixy>0</ixy>

@@ -1,5 +1,5 @@
-<!-- Here I am adding the robot_state_publisher node form the tutorial-->
 <launch>
+
   <!-- these are the arguments you can pass this launch file, for example paused:=true -->
   <arg name="paused" default="false"/>
   <arg name="use_gazebo" default="false" />
@@ -10,25 +10,12 @@
   <arg name="model" default="$(find mobile_robot_CCMDX1)/urdf/mr_CCMDX1.urdf"/>
   <arg name="rvizconfig" default="$(find mobile_robot_CCMDX1)/rviz/urdf.rviz" />
 
-<!--coords where I want to spawn the robot -->
-  <arg name="x" default="-18"/>
-  <arg name="y" default="+12"/>
-  <arg name="z" default="0.05"/>
+  <include file="$(find mobile_robot_CCMDX1)/launch/ccmdx1_gazebo.launch">
+    <arg name="model" value="$(arg model)" />
+  </include>
 
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" />
   <node name = "ccmdx1_rqt_dashboard" pkg = "rqt_gui" type = "rqt_gui" respawn = "false" output = "screen"/>
-
-
-<param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
-  <!-- push robot_description to factory and spawn robot in gazebo, here I added the coordinates where I want to spawn the robot -->
-
-<node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
-   args="-x $(arg x) -y $(arg y) -z $(arg z) -unpause -urdf -model robot -param robot_description" respawn="false" output="screen" />  
-
-<!-- convert joint states to TF transforms for rviz, etc -->
-  <node pkg="robot_state_publisher" type="robot_state_publisher"  name="robot_state_publisher" respawn="false" output="screen">
-   <param name="publish_frequency" type="double" value="30.0" />
-  </node>
 
 <!--Load the joint controller configurations from YAML file to parameter server -->
 
@@ -50,16 +37,15 @@
           --shutdown-timeout 3"/>
 
 
-  <!-- Map server -->
-  <arg name="map_file" default="$(find mobile_robot_CCMDX1)/ccmdx1_navigation/maps/ccmdx1_map.yaml"/>
 
-  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+   <node pkg="sensor_node_pkg" type="sensor_node_type" name="sensor_node_name" output="screen">
+    <param name="sensor_param" value="param_value" />
+ </node>
+ <node pkg="odom_node_pkg" type="odom_node_type" name="odom_node" output="screen">
+    <param name="odom_param" value="param_value" />
+ </node>
+ <node pkg="transform_configuration_pkg" type="transform_configuration_type" name="transform_configuration_name" output="screen">
+    <param name="transform_configuration_param" value="param_value" />
+ </node>
 
-  <!-- Localization -->
-  <arg name="initial_pose_x" default="0.0"/>
-  <arg name="initial_pose_y" default="0.0"/>
-  <arg name="initial_pose_a" default="0.0"/>
-
-
-
-</launch>
+</launch> 

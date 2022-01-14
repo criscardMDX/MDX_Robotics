@@ -63,7 +63,7 @@
       </geometry>
       <origin xyz="0 0 ${bodylen/3}"/>
     </collision>
-    <xacro:mdxcc1_inertial mass="5"/>
+    <xacro:mdxcc1_inertial mass="3"/>
   </link>
     <gazebo reference="robot_head_link">
       <material>Gazebo/Black</material>
@@ -108,7 +108,7 @@
      </geometry>
      <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
     </collision>
-    <xacro:mdxcc1_inertial mass="5"/>
+    <xacro:mdxcc1_inertial mass="4"/>
    </link>
 
    <joint name="${suffix_s}_stabiliser_joint" type="continuous">
@@ -224,7 +224,7 @@
         </geometry>
         <origin rpy="0 0 0" xyz="0 0 0"/>
       </collision>
-      <xacro:mdxcc1_inertial mass="10"/>
+      <xacro:mdxcc1_inertial mass="12"/>
     </link>
     <joint name="${prefix}_round_base_joint" type="fixed">
       <parent link="baseto_${prefix}_leg_link"/>
@@ -384,8 +384,8 @@
           </horizontal>
         </scan>
         <range>
-          <min>0.22</min>
-          <max>35.0</max>
+          <min>0.12</min>
+          <max>50.0</max>
           <resolution>0.01</resolution>
         </range>
         <noise>
